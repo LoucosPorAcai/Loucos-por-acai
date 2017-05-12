@@ -1,5 +1,7 @@
+
 {% load staticfiles %}
 {% load static %}
+
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
@@ -60,10 +62,9 @@
 			<div class="borda2">
 				<ul class="nav nav-tabs">
 				  <li class="active"><a data-toggle="tab" href="#home">Funcionario</a></li>
-				  <li><a data-toggle="tab" href="#menu1">Estoque</a></li>
-				
+				  <li><a data-toggle="tab" href="#menu1" >Estoque</a></li>
 				</ul>
-
+				
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
 				    <img class="img-responsive centralizar tama" src="{% static 'imagens/akivo.png' %}"><h2>Editar Funcionario</h2>
@@ -72,31 +73,31 @@
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">Cpf:</label>
 				    <div class="col-sm-10">
-				      <input type="cpf" class="form-control tam" id="cpf" placeholder="">
+				      <input type="cpf" class="form-control tam" id="cpf" placeholder="{{ usuario.cpf }}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="name">Nome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" id="nome" placeholder="">
+				      <input type="name" class="form-control tam" id="nome" placeholder="{{ usuario.nome }}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Endereço:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" id="endereco" placeholder="{{ endereco.rua }} {{ endereco.casa }}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone">Telefone:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="telefone" placeholder="">
+				      <input type="text" class="form-control tam" id="telefone" placeholder="{{telefone.dd1}} {{telefone.numero1}}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="salario">Salario:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="salario" placeholder="">
+				      <input type="text" class="form-control tam" id="salario" placeholder="{{funcionario.salario}}">
 				    </div>
 				  </div>
 				  <div class="form-group">
@@ -114,13 +115,13 @@
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="login">Login:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="login" placeholder="">
+				      <input type="text" class="form-control tam" id="login" placeholder="{{usuario.login}}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">Senha:</label>
 				    <div class="col-sm-10"> 
-				      <input type="password" class="form-control tam" id="pwd" placeholder="">
+				      <input type="password" class="form-control tam" id="pwd" placeholder="{{usuario.senha}}">
 				    </div>
 				  </div>
 				  
@@ -134,32 +135,36 @@
 				  <div id="menu1" class="tab-pane fade">
 				      <img class="img-responsive centralizar tama" src="{% static 'imagens/estoque.png' %}"><h2>Editar Estoque</h2>
 				<div class="linha2"></div>
-				<form class="form-horizontal mei">
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="nome">Nome :</label>
-				    <div class="col-sm-10">
-				      <input type="text" class="form-control tam" id="nome" placeholder="">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="quantidade">Quatidade:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="quantidade" placeholder="">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="marca">Marca:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="marca" placeholder="">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="limite">Limite:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="limite" placeholder="">
-				    </div>
-				  </div>
-				  
+				{% block content %}
+				<form method="POST" class="form-horizontal mei"> {% csrf_token %}
+
+						{{form.as_p}}
+						<!--
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="nome">Nome :</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control tam" id="nome" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="quantidade">Quatidade:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="quantidade" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="marca">Marca:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="marca" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="limite">Limite:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="limite" placeholder="">
+							</div>
+						</div>
+						-->
 				  
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
@@ -167,6 +172,7 @@
 				    </div>
 				  </div>
 				</form>
+				{% endblock %}
 				  </div>
 				  
 			</div>

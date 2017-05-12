@@ -60,59 +60,91 @@
 				  <li class="active"><a data-toggle="tab" href="#home">Funcionario</a></li>
 				  <li><a data-toggle="tab" href="#menu1">Estoque</a></li>
 				</ul>
-
+				{% block content %}
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
 				  <a href="consultarF.html"><button type="submit" class="btn meu alinhar">Consultar</button></a>
 				    <img class="img-responsive centralizar tama" src="{% static 'imagens/akivo.png' %}"><h2>Cadastrar Funcionario</h2>
 				<div class="linha2"></div>
-				<form class="form-horizontal mei">
+				<form method="POST" class="form-horizontal mei">
+					{% csrf_token %}
+	
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">Cpf:</label>
 				    <div class="col-sm-10">
-				      <input type="cpf" class="form-control tam" id="cpf" placeholder="">
+				      <input type="cpf" class="form-control tam" name ="cpf"id="cpf" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="name">Nome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" id="nome" placeholder="">
+				      <input type="name" class="form-control tam" name="nome" id="nome" placeholder="">
 				    </div>
 				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="endereco">Endereço:</label>
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="name">Sobrenome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="endereco" placeholder="">
+				      <input type="name" class="form-control tam" name="sobrenome" id="nome" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="endereco">Rua:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="rua" id="endereco" placeholder="">
+				    </div>
+				  </div>
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="endereco">Nº:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="numero" id="endereco" placeholder="">
+				    </div>
+				  </div>
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="endereco">Bairro:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="bairro" id="endereco" placeholder="">
+				    </div>
+				  </div>
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="endereco">Cidade:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="cidade" id="endereco" placeholder="">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="telefone">DDD:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="ddd"id="telefone" placeholder="">
+				    </div>
+				  </div>
+					 <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone">Telefone:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="telefone" placeholder="">
+				      <input type="text" class="form-control tam" name="telefone"id="telefone" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="salario">Salario:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="salario" placeholder="">
+				      <input type="text" class="form-control tam" name="salario" id="salario" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="periodo">Periodo de Trabalho:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="periodo" placeholder="">
+				      <input type="text" class="form-control tam" name="periodo" id="periodo" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cargo">Cargo:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="cargo" placeholder="">
+				      <input type="text" class="form-control tam" name="cargo"id="cargo" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="login">Login:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="login" placeholder="">
+				      <input type="text" class="form-control tam" name="login" id="login" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
@@ -121,6 +153,14 @@
 				      <input type="password" class="form-control tam" id="pwd" placeholder="">
 				    </div>
 				  </div>
+					 <div class="form-group">
+				    <label class="control-label col-sm-2" for="pwd">E-mail:</label>
+				    <div class="col-sm-10"> 
+				      <input type="password" class="form-control tam" name="E-mail"id="pwd" placeholder="">
+				    </div>
+				  </div>
+
+				
 				  
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
@@ -128,37 +168,60 @@
 				    </div>
 				  </div>
 				</form>
+				
 				  </div>
 				  <div id="menu1" class="tab-pane fade">
-				  		<a href="consultarE.html"><button type="submit" class="btn meu alinhar">Consultar</button></a>
+				  		<a href="{% url 'consulta_estoque' %}"><button type="submit" class="btn meu alinhar">Consultar</button></a>
 				      <img class="img-responsive centralizar tama" src="{% static 'imagens/estoque.png' %}"><h2>Cadastrar Estoque</h2>
 				<div class="linha2"></div>
-				<form class="form-horizontal mei">
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="nome">Nome :</label>
-				    <div class="col-sm-10">
-				      <input type="text" class="form-control tam" id="nome" placeholder="">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="quantidade">Quatidade:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="quantidade" placeholder="">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="marca">Marca:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="marca" placeholder="">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="limite">Limite:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="limite" placeholder="">
-				    </div>
-				  </div>
-				  
+				
+				<form method="POST" class="form-horizontal mei"> {% csrf_token %}
+
+						{{form.as_p}}
+					
+						<!--<div class="form-group">
+							<label class="control-label col-sm-2" for="nome">Nome :</label>
+							<div class="col-sm-10">
+								<input type="text" class="form-control tam" id="nome" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="quantidade">Quatidade:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="quantidade" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="marca">Marca:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="marca" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="limite">Limite:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="limite" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="limite">Limite:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="limite" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="limite">Limite:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="limite" placeholder="">
+							</div>
+						</div>
+						<div class="form-group">
+							<label class="control-label col-sm-2" for="limite">Limite:</label>
+							<div class="col-sm-10"> 
+								<input type="text" class="form-control tam" id="limite" placeholder="">
+							</div>
+						</div>
+					-->
 				  
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
@@ -166,6 +229,7 @@
 				    </div>
 				  </div>
 				</form>
+				{% endblock %}
 				  </div>
 				  
 			</div>

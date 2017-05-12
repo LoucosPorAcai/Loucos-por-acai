@@ -1,3 +1,4 @@
+
 {% load staticfiles %}
 {% load static %}
 <!DOCTYPE html>
@@ -68,28 +69,15 @@
 					        <th class="centr">Excluir</th>
 					      </tr>
 					    </thead>
-					    <tbody>
-					      <tr >
-					        <td>1. Leite em pó</td>
-					        <td><a href="editeEdicaoG.html"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-					        <td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
-					      </tr>
-					      <tr>
-					        <td>2. Pão de forma</td>
-					        <td><a href="editeEdicaoG.html"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-					        <td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
-					      </tr>
-					      <tr>
-					        <td>3. Pó de guaraná</td>
-					        <td><a href="editeEdicaoG.html"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-					        <td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
-					      </tr>
-					      <tr>
-					        <td>4. Açai</td>
-					        <td><a href="editeEdicaoG.html"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-					        <td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
-					      </tr>
-					    </tbody>
+							<tbody>
+								{% for estoque in estoques %}
+									<tr>
+										<td>{{ estoque.nome }} {{estoque.marca}}</td>
+										<td><a href="{% url 'edita_estoque' pk=estoque.id %}" href="#ESTOQUE"> <img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
+										<td><a href="{% url 'delete_estoque' id=estoque.id %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
+									</tr>
+								{% endfor %}
+					    </tbody>	
 					  </table>
 				  </div>
 				  

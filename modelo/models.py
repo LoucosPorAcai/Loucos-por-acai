@@ -11,10 +11,10 @@ from django.db import models
 
 class Estoque(models.Model):
 
-    id = models.IntegerField(primary_key=True)  # AutoField?
+    id = models.AutoField(primary_key=True)  # AutoField?
     nome = models.CharField(max_length=100)
     marca = models.CharField(max_length=100)
-    preco = models.TextField()  # This field type is a guess.
+    preco = models.FloatField()  # This field type is a guess.
     quant_produtos = models.CharField(max_length=45)
     minimo = models.IntegerField()
     pontos = models.IntegerField(blank=True, null=True)
@@ -25,7 +25,7 @@ class Estoque(models.Model):
 
 class Endereco(models.Model):
 
-    id = models.IntegerField(primary_key=True)  # AutoField?
+    id = models.AutoField(primary_key=True)  # AutoField?
     rua = models.CharField(max_length=100)
     numero_casa = models.IntegerField()
     complemento = models.CharField(max_length=100, blank=True, null=True)
@@ -38,7 +38,7 @@ class Endereco(models.Model):
 
 class Telefone(models.Model):
 
-    id = models.IntegerField(primary_key=True)  # AutoField?
+    id = models.AutoField(primary_key=True)  # AutoField?
     ddd1 = models.IntegerField()
     numero1 = models.CharField(max_length=15)
     ddd2 = models.IntegerField(blank=True, null=True)
@@ -49,22 +49,22 @@ class Telefone(models.Model):
 
 class Usuario(models.Model):
 
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=45)
     sobrenome = models.CharField(max_length=45)
     cpf = models.CharField(max_length=14)
     login = models.CharField(max_length=45)
     senha = models.CharField(max_length=45)
     email = models.CharField(max_length=45)
-    FK_usuario_endereco = models.ForeignKey(Endereco,blank=True, null=False)
-    FK_usuario_telefone = models.ForeignKey(Telefone, blank=True, null=False)
+    endereco = models.ForeignKey(Endereco,blank=True, null=False)
+    telefone = models.ForeignKey(Telefone, blank=True, null=False)
 
     class Meta:
         db_table = 'modelo_usuario'
 
 class Cartao(models.Model):
 
-    id = models.IntegerField(primary_key=True)  # AutoField?
+    id = models.AutoField(primary_key=True)  # AutoField?
     quant_pontos = models.IntegerField()
 
     class Meta:
@@ -73,10 +73,10 @@ class Cartao(models.Model):
 
 class Cliente(models.Model):
 
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
 
-    FK_cliente_usuario = models.ForeignKey(Usuario, blank=True, null=False)
-    FK_cliente_cartao = models.ForeignKey(Cartao, blank=True, null=False)
+    usuario = models.ForeignKey(Usuario, blank=True, null=False)
+    cartao = models.ForeignKey(Cartao, blank=True, null=False)
 
     class Meta:
         db_table = 'modelo_cliente'
@@ -84,7 +84,7 @@ class Cliente(models.Model):
 
 class Situacao(models.Model):
 
-    id = models.IntegerField(primary_key=True)  # AutoField?
+    id = models.AutoField(primary_key=True)  # AutoField?
     descricao = models.CharField(max_length=45)
 
     class Meta:
@@ -93,7 +93,7 @@ class Situacao(models.Model):
 
 class Tipofuncionario(models.Model):
 
-    id = models.IntegerField(primary_key=True)  # AutoField?
+    id = models.AutoField(primary_key=True)  # AutoField?
     desc_tipo = models.CharField(max_length=45)
 
     class Meta:
@@ -102,13 +102,13 @@ class Tipofuncionario(models.Model):
 
 class Funcionario (models.Model):
 
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     salario = models.FloatField()
     periodo_trabalho = models.CharField(max_length=45)
 
-    FK_funcionario_usuario = models.ForeignKey(Usuario, blank=True, null=False)
-    FK_funcionario_tipo_funcionario = models.ForeignKey(Tipofuncionario ,blank=True , null=False)
-    FK_funcionario_situacao = models.ForeignKey(Situacao, blank=True, null=False)
+    usuario = models.ForeignKey(Usuario, blank=True, null=False)
+    tipo_funcionario = models.ForeignKey(Tipofuncionario ,blank=True , null=False)
+    situacao = models.ForeignKey(Situacao, blank=True, null=False)
 
     class Meta:
         db_table = 'modelo_funcionario'
@@ -116,13 +116,13 @@ class Funcionario (models.Model):
 
 class Atendimento(models.Model):
 
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     tipo_entrega = models.CharField(max_length=45)
     data = models.DateField('Data do Atendimento')
     hora = models.CharField(max_length=45)
 
-    FK_atendimento_funcionario = models.ForeignKey(Funcionario, blank=True, null=False)
-    FK_atendimento_cliente = models.ForeignKey(Cliente, blank=True, null=False)
+    funcionario = models.ForeignKey(Funcionario, blank=True, null=False)
+    cliente = models.ForeignKey(Cliente, blank=True, null=False)
 
     class Meta:
         db_table = 'modelo_atendimento'
@@ -130,8 +130,8 @@ class Atendimento(models.Model):
 
 class Carrinho(models.Model):
 
-    FK_carrinho_estoque = models.ForeignKey(Estoque, blank=True, null=False)
-    FK_carrinho_atendimento = models.ForeignKey(Atendimento,blank=True, null=False)
+    estoque = models.ForeignKey(Estoque, blank=True, null=False)
+    atendimento = models.ForeignKey(Atendimento,blank=True, null=False)
 
     class Meta:
         db_table = 'modelo_carrinho'
@@ -139,13 +139,13 @@ class Carrinho(models.Model):
 
 class Trocapontos(models.Model):
 
-    id = models.IntegerField(primary_key=True)
+    id = models.AutoField(primary_key=True)
     pontos_gastos = models.IntegerField()
     data = models.DateField('Data da troca')
     hora = models.CharField(max_length=45)
-    FK_trocaPontos_funcionario = models.ForeignKey(Funcionario, blank=True, null=False)
-    FK_trocaPontos_cliente = models.ForeignKey(Cliente,blank=True,null=False)
-    FK_trocaPontos_estoque = models.ForeignKey(Estoque,blank=True,null=False)
+    funcionario = models.ForeignKey(Funcionario, blank=True, null=False)
+    cliente = models.ForeignKey(Cliente,blank=True,null=False)
+    estoque = models.ForeignKey(Estoque,blank=True,null=False)
 
     class Meta:
         db_table = 'modelo_trocapontos'
