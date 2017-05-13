@@ -1,28 +1,30 @@
+{% load staticfiles %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 	<head>
 		<meta charset="utf-8">
 		<title>Principal</title>
-		<link rel="stylesheet" type="text/css" href="Css/bootstrap/css/bootstrap.min.css">
-		<link rel="stylesheet" type="text/css" href="css/index.css">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div class="row cor ">
 			<div class="col-sm-8">
-				<img class="img-responsive tamanho" src="imagens/loucos2.png">
+				<img class="img-responsive tamanho" src="{% static 'imagens/loucos2.png'%}">
 			</div>
 			<div class="col-sm-4">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">
 							<div class="col-sm-6">
-								<img class="img-responsive mud4 direita" src="imagens/akivo.png">
+								<img class="img-responsive mud4 direita" src="{% static 'imagens/akivo.png'%}">
 							</div>
 							<div class="col-lg-6">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							    <img class="img-responsive seta" src="imagens/seta.png"></a>
+							    <img class="img-responsive seta" src="{% static 'imagens/seta.png'%}"></a>
 							    <ul class="dropdown-menu">
 							      <li><a href="venda.html">Venda</a></li>
 							      <li><a href="cadF.html">Cadastro</a></li>
@@ -39,41 +41,41 @@
 			<div class="col-sm-12">
 				<div class="row meior">
 					<div class="col-sm-2 cor5">
-						<a href="indexF.html"><img class="img-responsive mud2" src="imagens/home.png"></a>
+						<a href="indexF.html"><img class="img-responsive mud2" src="{% static 'imagens/home.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor2">
-						<a href="cardapioF.html"><img class="img-responsive mud2" src="imagens/menu.png"></a>
+						<a href="cardapioF.html"><img class="img-responsive mud2" src="{% static 'imagens/menu.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor3">
-						<a href="sobreNosF.html"><img class="img-responsive mud2" src="imagens/sobre.png"></a>
+						<a href="sobreNosF.html"><img class="img-responsive mud2" src="{% static 'imagens/sobre.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor4">
-						<a href="contatoF.html"><img class="img-responsive mud2" src="imagens/cb.png"></a>
+						<a href="contatoF.html"><img class="img-responsive mud2" src="{% static 'imagens/cb.png'%}"></a>
 					</div>
 				</div>
 			</div>
 		</nav>
 		<section class="container">
 			<h2>Cardapio</h2>
-			<img class="img-responsive centralizar" src="imagens/cardapio.png">
+			<img class="img-responsive centralizar" src="{% static 'imagens/cardapio.png'%}">
 		</section>
 		<footer class="row cor">
 			<div class="col-sm-12">
 				<div class="row">
 					<div class="col-sm-4">
-						<img class="img-responsive tamanho2" src="imagens/loucos2.png">
+						<img class="img-responsive tamanho2" src="{% static 'imagens/loucos2.png'%}">
 					</div>
 					<div class="col-sm-4">
-						<a href="indexF.html"><img class="img-responsive mu" src="imagens/homes.png"></a>
-						<a href="cardapioF.html"><img class="img-responsive mu" src="imagens/menus.png"></a>
-						<a href="sobreNosF.html"><img class="img-responsive mu" src="imagens/bore.png"></a>
-						<a href="contatoF.html"><img class="img-responsive mu" src="imagens/contatos.png"></a>
+						<a href="indexF.html"><img class="img-responsive mu" src="{% static 'imagens/homes.png'%}"></a>
+						<a href="cardapioF.html"><img class="img-responsive mu" src="{% static 'imagens/menus.png'%}"></a>
+						<a href="sobreNosF.html"><img class="img-responsive mu" src="{% static 'imagens/bore.png'%}"></a>
+						<a href="contatoF.html"><img class="img-responsive mu" src="{% static 'imagens/contatos.png'%}"></a>
 					</div>	
 						
 					<div class="col-sm-4">
 						<div class="row tes">
 							<div class="col-sm-2 ">
-								<img class="img-responsive dimm " src="imagens/icontel.png">
+								<img class="img-responsive dimm " src="{% static 'imagens/icontel.png'%}">
 							</div>
 							<div class="col-sm-8">
 								<p style="color: white">(85) 9 9856-6485</p>
@@ -89,7 +91,3 @@
 </html>
 
 
-				
-			
-				
-				
