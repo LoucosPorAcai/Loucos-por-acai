@@ -19,7 +19,7 @@ def delete_estoque(request,id):
 def consulta_estoque(request):
     data = {}
     data['estoques'] = Estoque.objects.all()
-    return render(request,'view/ConsultarE.html',data)
+    return render(request,'view/editar.html',data)
 
 def edita_estoque(request,pk):
 
