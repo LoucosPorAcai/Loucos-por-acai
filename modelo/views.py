@@ -9,11 +9,25 @@ from .forms import EstoqueForm
 from .forms import FuncionarioForm
 from django.contrib import messages
 
+def index(request):
+    return render(request, 'view/index.html')
+
+def menu(request):
+    return render(request, 'view/cardapio.html')
+
+def sobre(request):
+    return render(request, 'view/sobreNos.html')
+
+def contato(request):
+    return render(request, 'view/contato.html')
+
+def login(request):
+    return render(request, 'view/login.html')
+
 def delete_estoque(request,id):
 
     estoque = Estoque.objects.filter(id=id)
     estoque.delete()
-    messages.add_message(request, messages.INFO, 'Excluido com sucesso')
     return HttpResponseRedirect("/consulta/")
 
 def consulta_estoque(request):
