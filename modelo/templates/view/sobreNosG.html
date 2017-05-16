@@ -26,9 +26,9 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							    <img class="img-responsive seta" src="{% static 'imagens/seta.png'%}"></a>
 							    <ul class="dropdown-menu">
-							      <li><a href="vendaG.html">Venda</a></li>
-							      <li><a href="cadG.html">Cadastro</a></li>
-							      <li><a href="consultarH.html">Historico</a></li>
+							      <li><a href="{% url 'vendaGeren' %}">Venda</a></li>
+							      <li><a href="{% url 'cadastroGeren' %}">Cadastro</a></li>
+							      <li><a href="{% url 'consultarHistor' %}">Historico</a></li>
 							      <li><a href="#">Sair</a></li> 
 							    </ul>
 							</div>
@@ -43,16 +43,16 @@
 			<div class="col-sm-12">
 				<div class="row meior">
 					<div class="col-sm-2 cor5">
-						<a href="indexG.html"><img class="img-responsive mud2" src="{% static 'imagens/home.png'%}"></a>
+						<a href="{% url 'indexGeren' %}"><img class="img-responsive mud2" src="{% static 'imagens/home.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor2">
-						<a href="cardapioG.html"><img class="img-responsive mud2" src="{% static 'imagens/menu.png'%}"></a>
+						<a href="{% url 'cardapioGeren' %}"><img class="img-responsive mud2" src="{% static 'imagens/menu.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor3">
-						<a href="sobreNosG.html"><img class="img-responsive mud2" src="{% static 'imagens/sobre.png'%}"></a>
+						<a href="{% url 'sobreNosGeren' %}"><img class="img-responsive mud2" src="{% static 'imagens/sobre.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor4">
-						<a href="contatoG.html"><img class="img-responsive mud2" src="{% static 'imagens/cb.png'%}"></a>
+						<a href="{% url 'contatoGeren' %}"><img class="img-responsive mud2" src="{% static 'imagens/cb.png'%}"></a>
 					</div>
 				</div>
 			</div>
@@ -79,10 +79,10 @@
 						<img class="img-responsive tamanho2" src="{% static 'imagens/loucos2.png'%}">
 					</div>
 					<div class="col-sm-4">
-						<a href="indexG.html"><img class="img-responsive mu" src="{% static 'imagens/homes.png'%}"></a>
-						<a href="cardapioG.html"><img class="img-responsive mu" src="{% static 'imagens/menus.png'%}"></a>
-						<a href="sobreNosG.html"><img class="img-responsive mu" src="{% static 'imagens/bore.png'%}"></a>
-						<a href="contatoG.html"><img class="img-responsive mu" src="{% static 'imagens/contatos.png'%}"></a>
+						<a href="{% url 'indexGeren' %}"><img class="img-responsive mu" src="{% static 'imagens/homes.png'%}"></a>
+						<a href="{% url 'cardapioGeren' %}"><img class="img-responsive mu" src="{% static 'imagens/menus.png'%}"></a>
+						<a href="{% url 'sobreNosGeren' %}"><img class="img-responsive mu" src="{% static 'imagens/bore.png'%}"></a>
+						<a href="{% url 'contatoGeren' %}"><img class="img-responsive mu" src="{% static 'imagens/contatos.png'%}"></a>
 					</div>	
 						
 					<div class="col-sm-4">

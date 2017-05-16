@@ -26,8 +26,8 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							    <img class="img-responsive seta" src="{% static 'imagens/seta.png'%}"></a>
 							    <ul class="dropdown-menu">
-							      <li><a href="venda.html">Venda</a></li>
-							      <li><a href="cadF.html">Cadastro</a></li>
+							      <li><a href="{% url 'venda' %}">Venda</a></li>
+							      <li><a href="{% url 'cadastroFunc' %}">Cadastro</a></li>
 							      <li><a href="#">Sair</a></li> 
 							    </ul>
 							</div>
@@ -41,16 +41,16 @@
 			<div class="col-sm-12">
 				<div class="row meior">
 					<div class="col-sm-2 cor5">
-						<a href="index.html"><img class="img-responsive mud2" src="{% static 'imagens/home.png'%}"></a>
+						<a href="{% url 'indexFunc' %}"><img class="img-responsive mud2" src="{% static 'imagens/home.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor2">
-						<a href="cardapio.html"><img class="img-responsive mud2" src="{% static 'imagens/menu.png'%}"></a>
+						<a href="{% url 'cardapioFunc' %}"><img class="img-responsive mud2" src="{% static 'imagens/menu.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor3">
-						<a href="sobreNos.html"><img class="img-responsive mud2" src="{% static 'imagens/sobre.png'%}"></a>
+						<a href="{% url 'sobreNosFunc' %}"><img class="img-responsive mud2" src="{% static 'imagens/sobre.png'%}"></a>
 					</div>
 					<div class="col-sm-2 cor4">
-						<a href="contato.html"><img class="img-responsive mud2" src="{% static 'imagens/cb.png'%}"></a>
+						<a href="{% url 'contatoFunc' %}"><img class="img-responsive mud2" src="{% static 'imagens/cb.png'%}"></a>
 					</div>
 				</div>
 			</div>
@@ -113,10 +113,10 @@
 						<img class="img-responsive tamanho2" src="{% static 'imagens/loucos2.png'%}">
 					</div>
 					<div class="col-sm-4">
-						<a href="index.html"><img class="img-responsive mu" src="{% static 'imagens/homes.png'%}"></a>
-						<a href="cardapio.html"><img class="img-responsive mu" src="{% static 'imagens/menus.png'%}"></a>
-						<a href="sobreNos.html"><img class="img-responsive mu" src="{% static 'imagens/bore.png'%}"></a>
-						<a href="contato.html"><img class="img-responsive mu" src="{% static 'imagens/contatos.png'%}"></a>
+						<a href="{% url 'indexFunc' %}"><img class="img-responsive mu" src="{% static 'imagens/homes.png'%}"></a>
+						<a href="{% url 'contatoFunc' %}"><img class="img-responsive mu" src="{% static 'imagens/menus.png'%}"></a>
+						<a href="{% url 'sobreNosFunc' %}"><img class="img-responsive mu" src="{% static 'imagens/bore.png'%}"></a>
+						<a href="{% url 'contatoFunc' %}"><img class="img-responsive mu" src="{% static 'imagens/contatos.png'%}"></a>
 					</div>	
 						
 					<div class="col-sm-4">
