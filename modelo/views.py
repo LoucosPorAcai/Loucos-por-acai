@@ -25,7 +25,7 @@ def login(request):
     return render(request, 'view/login.html')
 
 def index_cliente(request):
-    return render(request, 'view/indexC.html')
+    return render(request, 'view/cadG.html')
 
 def menu_cliente(request):
     return render(request, 'view/cardapioC.html')
