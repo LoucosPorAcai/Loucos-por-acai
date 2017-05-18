@@ -39,6 +39,9 @@ def contato_cliente(request):
 def perfil_cliente(request):
     return render(request, 'view/perfil.html')
 
+def editar_cliente(request):
+    return render(request, 'view/editeEdicao.html')
+
 def consultar_cliente(request):
     return render(request, 'view/ConsultarCF.html')
 

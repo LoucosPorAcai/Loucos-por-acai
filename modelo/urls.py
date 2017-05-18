@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
 
-    url(r'^$', views.index, name='index'),
+    url(r'^$', views.index_cliente, name='index'),
     url(r'^cardapio/$', views.menu, name='menu'),
     url(r'^sobre/$', views.sobre, name='sobre'),
     url(r'^contato/$', views.contato, name='contato'),
@@ -14,6 +14,7 @@ urlpatterns = [
     url(r'^cliente/sobre/$', views.sobre_cliente, name='sobreNosCliente'),
     url(r'^cliente/contato/$', views.contato_cliente, name='contatoCliente'),
     url(r'^cliente/perfil/$', views.perfil_cliente, name='perfil'),
+    url(r'^cliente/perfil/editar/$', views.editar_cliente, name='editeEdicao'),
     url(r'^funcionario/$', views.index_funcionario, name='indexFunc'),
     url(r'^funcionario/cardapio/$', views.menu_funcionario, name='cardapioFunc'),
     url(r'^funcionario/sobre/$', views.sobre_funcionario, name='sobreNosFunc'),
