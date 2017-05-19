@@ -27,7 +27,7 @@
 							    <img class="img-responsive seta" src="{% static 'imagens/seta.png'%}"></a>
 							    <ul class="dropdown-menu">
 							      <li><a href="{% url 'vendasGeren' %}">Venda</a></li>
-							      <li><a href="{% url 'cadastroFunc' %}">Cadastro Funcionario</a></li>
+							      <li><a href="{% url 'cadastroGeren' %}">Cadastro Funcionario</a></li>
 							      <li><a href="{% url 'cadastroEstoque' %}">Cadastro Estoque</a></li>
 							      <li><a href="{% url 'consultarHistor' %}">Historico</a></li>
 							      <li><a href="{% url 'editeEdicaoGeren' %}">Editar</a></li>
@@ -66,7 +66,7 @@
 				{% block content %}
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
-				  <a href="{% url 'consultarF.html'%}"><button type="submit" class="btn meu alinhar">Consultar</button></a>
+				  <a href="{% url 'consultarFunc'%}"><button type="submit" class="btn meu alinhar">Consultar</button></a>
 				    <img class="img-responsive centralizar tama" src="{% static 'imagens/akivo.png' %}"><h2>Cadastrar Funcionario</h2>
 				<div class="linha2"></div>
 				<form method="POST" class="form-horizontal mei">

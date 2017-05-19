@@ -31,6 +31,7 @@
 							      <li><a href="{% url 'cadastroEstoque' %}">Cadastro Estoque</a></li>
 							      <li><a href="{% url 'consultarHistor' %}">Historico</a></li>
 							      <li><a href="{% url 'editeEdicaoGeren' %}">Editar</a></li>
+							       
 							      <li><a href="#">Sair</a></li> 
 							    </ul>
 							</div>
@@ -66,8 +67,8 @@
 				{% block content %}
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
-				  <a href="{% url 'consulta_estoque' %}"><button type="submit" class="btn meu alinhar">Consultar</button></a>
-				      <img class="img-responsive centralizar tama" src="{% static 'imagens/estoque.png' %}"><h2>Cadastrar Estoque</h2>
+				  
+				      <img class="img-responsive centralizar tama" src="{% static 'imagens/estoque.png' %}"><h2>Editar Estoque</h2>
 				<div class="linha2"></div>
 				
 				<form method="POST" class="form-horizontal mei"> {% csrf_token %}

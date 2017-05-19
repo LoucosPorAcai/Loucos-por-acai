@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
 
-    url(r'^$', views.index_cliente, name='index'),
+    url(r'^$', views.index_gerente, name='index'),
     url(r'^cardapio/$', views.menu, name='menu'),
     url(r'^sobre/$', views.sobre, name='sobre'),
     url(r'^contato/$', views.contato, name='contato'),
@@ -30,9 +30,10 @@ urlpatterns = [
     url(r'^gerente/contato/$', views.contato_gerente, name='contatoGeren'),
     url(r'^gerente/cadastro_funcionario/$',views.new_funcionario, name='cadastroGeren'),
     url(r'^gerente/editar_funcionario/$', views.editar_funcionario_gerente, name='editeEdicaoGeren'),
+    url(r'^gerente/consultar_funcionario/$', views.consultar_funcionario, name='consultarFunc'),
     url(r'^gerente/consultar_historico/$', views.consultar_historico, name='consultarHistor'),
     url(r'^gerente/venda/$', views.vendas_gerente, name='vendasGeren'),
-    url(r'^gerente/cadastro_estoque/$', views.new_estoque, name='new_estoque'),
+    url(r'^gerente/cadastro_estoque/$', views.new_estoque, name='cadastroEstoque'),
     url(r'^gerente/consulta_estoque/$', views.consulta_estoque, name='consulta_estoque'),
     url(r'^gerente/consulta_estoque/edicao/(?P<pk>[0-9]+)/$', views.edita_estoque, name='edita_estoque'),
     url(r'^gerente/consulta_estoque/deletar/(?P<id>[0-9]+)/$', views.delete_estoque, name='delete_estoque'),

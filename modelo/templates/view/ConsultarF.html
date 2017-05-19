@@ -26,8 +26,8 @@
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
 							    <img class="img-responsive seta" src="{% static 'imagens/seta.png'%}"></a>
 							    <ul class="dropdown-menu">
-							      <li><a href="{% url 'vendaGeren' %}">Venda</a></li>
-							      <li><a href="{% url 'cadastroFunc' %}">Cadastro Funcionario</a></li>
+							      <li><a href="{% url 'vendasGeren' %}">Venda</a></li>
+							      <li><a href="{% url 'cadastroGeren' %}">Cadastro Funcionario</a></li>
 							      <li><a href="{% url 'cadastroEstoque' %}">Cadastro Estoque</a></li>
 							      <li><a href="{% url 'consultarHistor' %}">Historico</a></li>
 							      <li><a href="{% url 'editeEdicaoGeren' %}">Editar</a></li>
@@ -76,7 +76,7 @@
 									{% if usuario == funcionario.usuario %}
 										<tr>
 											<td>{{usuario.nome}} {{usuario.sobrenome}}</td>
-											<td><a href="{% url 'editeEdicao' %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
+											<td><a href="{% url 'editeEdicaoGeren' %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
 											<td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
 										</tr>
 									{% endif %}

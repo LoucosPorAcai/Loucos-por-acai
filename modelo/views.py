@@ -25,7 +25,7 @@ def login(request):
     return render(request, 'view/login.html')
 
 def index_cliente(request):
-    return render(request, 'view/cadG.html')
+    return render(request, 'view/indexC.html')
 
 def menu_cliente(request):
     return render(request, 'view/cardapioC.html')
@@ -64,7 +64,7 @@ def delete_estoque(request,id):
 
     estoque = Estoque.objects.filter(id=id)
     estoque.delete()
-    return HttpResponseRedirect("/consulta/")
+    return HttpResponseRedirect("/consulta_estoque/")
 
 def editar_funcionario(request):
     return render(request, 'view/editeEdicaoF.html')
@@ -87,7 +87,7 @@ def sobre_gerente(request):
 def contato_gerente(request):
     return render(request, 'view/contatoG.html')
 
-def new_funcionario(request,id):
+def new_funcionario(request):
     data = {}
 
     if request.method == "POST":
@@ -116,7 +116,7 @@ def vendas_gerente(request):
 def consulta_estoque(request):
     data = {}
     data['estoques'] = Estoque.objects.all()
-    return render(request,'view/editar.html',data)
+    return render(request,'view/ConsultarE.html',data)
 
 def edita_estoque(request,pk):
 
@@ -133,7 +133,7 @@ def edita_estoque(request,pk):
 
     data['form'] = form
 
-    return render(request, 'view/editeEdicaoG.html', data)
+    return render(request, 'view/editeEdicaoE.html', data)
 
 
 def new_estoque(request):
@@ -149,5 +149,5 @@ def new_estoque(request):
 
     data['form'] = form
 
-    return render(request, 'view/cadG.html', data)
+    return render(request, 'view/cadE.html', data)
 
