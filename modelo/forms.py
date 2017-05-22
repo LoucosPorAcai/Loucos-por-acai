@@ -17,12 +17,15 @@ class FuncionarioForm(forms.ModelForm):
 
     class Meta:
         model = Funcionario
-        fields = ('salario','periodo_trabalho','usuario','tipo_funcionario','situacao',)
+        fields = ('salario','periodo_trabalho',)
+        exclude = ('usuario','tipo_funcionario','situacao',)
+
 class UsuarioForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('nome','sobrenome','cpf','login','senha','email','endereco','telefone',)
+        fields = ('nome','sobrenome','cpf','login','senha','email',)
+        exclude = ('endereco','telefone',)
 
 class TelefoneForm(forms.ModelForm):
 

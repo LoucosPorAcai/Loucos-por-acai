@@ -7,6 +7,11 @@ from .models import Endereco
 from .models import Telefone
 from .forms import EstoqueForm
 from .forms import FuncionarioForm
+from .forms import UsuarioForm
+from .forms import TelefoneForm
+from .forms import EnderecoForm
+from .forms import TipofuncionarioForm
+from .forms import SituacaoForm
 from django.contrib import messages
 
 def index(request):
@@ -61,7 +66,6 @@ def vendas_funcionario(request):
     return render(request, 'view/venda.html')
 
 def delete_estoque(request,id):
-
     estoque = Estoque.objects.filter(id=id)
     estoque.delete()
     return HttpResponseRedirect("/consulta_estoque/")
@@ -91,10 +95,45 @@ def new_funcionario(request):
     data = {}
 
     if request.method == "POST":
-        data['cpf'] = request.POST.get('cpf')
+        funcform = FuncionarioForm(request.POST)
+        usrform = UsuarioForm(request.POST)
+        tpfuncform = TipofuncionarioForm(request.POST)
+        endform = EnderecoForm(request.POST)
+        sform = SituacaoForm(request.POST)
+        telform = TelefoneForm(request.POST)
+
+        if telform.is_valid() and sform.is_valid() and endform.is_valid() and tpfuncform.is_valid() and sform.is_valid() and all([usrform.is_valid() for usr in usrform]) and all([funcform.is_valid() for func in funcform]):
+            new_telefone = telform.save()
+            new_tipo = tpfuncform.save()
+            new_end = endform.save()
+            new_situacao = sform.save()
+            for usr in usrform:
+                new_user = usrform.save(commit=False)
+                new_user.telefone = new_telefone
+                new_user.endereco = new_end
+                new_user.save()
+                for func in funcform:
+                    new_func = funcform.save(commit=False)
+                    new_func.situacao = new_situacao
+                    new_func.tipo_funcionario = new_tipo
+                    new_func.usuario = new_user
+                    new_func.save()
+
     else:
-        form = FuncionarioForm()
-    data['form'] = form
+        funcform = FuncionarioForm()
+        usrform = UsuarioForm()
+        tpfuncform = TipofuncionarioForm()
+        endform = EnderecoForm()
+        sform = SituacaoForm()
+        telform = TelefoneForm()
+
+    data['funcionarios'] = funcform
+    data['usuarios'] = usrform
+    data['tipos'] = tpfuncform
+    data['enderecos'] = endform
+    data['situacoes'] = sform
+    data['telefones'] = telform
+
     return render(request, 'view/cadG.html', data)
 
 def consultar_funcionario(request):
