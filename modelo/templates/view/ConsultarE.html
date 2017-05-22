@@ -73,7 +73,7 @@
 								{% for estoque in estoques %}
 									<tr>
 										<td>{{ estoque.nome }} {{estoque.marca}}</td>
-										<td><a href="{% url 'edita_estoque' pk=estoque.id %}" href="#ESTOQUE"> <img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
+										<td><a href="{% url 'edita_estoque' pk=estoque.id %}"> <img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
 										<td><a href="{% url 'delete_estoque' id=estoque.id %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
 									</tr>
 								{% endfor %}

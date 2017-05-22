@@ -1,17 +1,8 @@
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
-from .models import Estoque
-from .models import Funcionario
-from .models import Usuario
-from .models import Endereco
-from .models import Telefone
-from .forms import EstoqueForm
-from .forms import FuncionarioForm
-from .forms import UsuarioForm
-from .forms import TelefoneForm
-from .forms import EnderecoForm
-from .forms import TipofuncionarioForm
-from .forms import SituacaoForm
+
+from .forms import *
+from .models import *
 from django.contrib import messages
 
 def index(request):
@@ -143,8 +134,74 @@ def consultar_funcionario(request):
     data['usuarios'] = Usuario.objects.all()
     return render(request, 'view/ConsultarF.html', data)
 
-def editar_funcionario_gerente(request):
-    return render(request, 'view/editeEdicaoG.html')
+def editar_funcionario_gerente(request, id):
+
+    data = {}
+    funcionario = Funcionario.objects.get(pk=id)
+    usuario = funcionario.usuario
+
+    if request.method == "POST":
+
+        funcform = FuncionarioForm(request.POST, instance=funcionario)
+        usrform = UsuarioForm(request.POST, instance=usuario)
+        tpfuncform = TipofuncionarioForm(request.POST, instance=funcionario.tipo_funcionario)
+        endform = EnderecoForm(request.POST, instance=usuario.endereco)
+        sform = SituacaoForm(request.POST, instance=funcionario.situacao)
+        telform = TelefoneForm(request.POST, instance=usuario.telefone)
+
+        if telform.is_valid() and sform.is_valid() and endform.is_valid() and tpfuncform.is_valid() and sform.is_valid() and all(
+                [usrform.is_valid() for usr in usrform]) and all([funcform.is_valid() for func in funcform]):
+            new_telefone = telform.save()
+            new_tipo = tpfuncform.save()
+            new_end = endform.save()
+            new_situacao = sform.save()
+            for usr in usrform:
+                new_user = usrform.save(commit=False)
+                new_user.telefone = new_telefone
+                new_user.endereco = new_end
+                new_user.save()
+                for func in funcform:
+                    new_func = funcform.save(commit=False)
+                    new_func.situacao = new_situacao
+                    new_func.tipo_funcionario = new_tipo
+                    new_func.usuario = new_user
+                    new_func.save()
+
+    else:
+        funcform = FuncionarioForm(instance=funcionario)
+        usrform = UsuarioForm(instance=usuario)
+        tpfuncform = TipofuncionarioForm(instance=funcionario.tipo_funcionario)
+        endform = EnderecoForm(instance=usuario.endereco)
+        sform = SituacaoForm(instance=funcionario.situacao)
+        telform = TelefoneForm(instance=usuario.telefone)
+
+    data['funcionarios'] = funcform
+    data['usuarios'] = usrform
+    data['tipos'] = tpfuncform
+    data['enderecos'] = endform
+    data['situacoes'] = sform
+    data['telefones'] = telform
+
+    return render(request, 'view/editeEdicaoG.html', data)
+
+def excluir_funcionario_gerente(request, id):
+
+    funcionario = Funcionario.objects.get(pk=id)
+    usuario = funcionario.usuario
+    tipo = funcionario.tipo_funcionario
+    situacao = funcionario.situacao
+    telefone = usuario.telefone
+    endereco = usuario.endereco
+
+    endereco.delete()
+    telefone.delete()
+    situacao.delete()
+    tipo.delete()
+    usuario.delete()
+    funcionario.delete()
+
+
+    return HttpResponseRedirect('/consultarFunc/')
 
 def consultar_historico(request):
     return render(request, 'view/consultarH.html')
@@ -156,6 +213,7 @@ def consulta_estoque(request):
     data = {}
     data['estoques'] = Estoque.objects.all()
     return render(request,'view/ConsultarE.html',data)
+
 
 def edita_estoque(request,pk):
 

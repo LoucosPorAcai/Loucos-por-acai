@@ -30,7 +30,7 @@
 							      <li><a href="{% url 'cadastroGeren' %}">Cadastro Funcionario</a></li>
 							      <li><a href="{% url 'cadastroEstoque' %}">Cadastro Estoque</a></li>
 							      <li><a href="{% url 'consultarHistor' %}">Historico</a></li>
-							      <li><a href="{% url 'editeEdicaoGeren' %}">Editar</a></li>
+							      <li><a href="#">Editar</a></li>
 							      <li><a href="#">Sair</a></li> 
 							    </ul>
 							</div>
@@ -76,8 +76,8 @@
 									{% if usuario == funcionario.usuario %}
 										<tr>
 											<td>{{usuario.nome}} {{usuario.sobrenome}}</td>
-											<td><a href="{% url 'editeEdicaoGeren' %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-											<td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
+											<td><a href="{% url 'editarFuncionario' id=funcionario.id %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
+											<td><a href="{% url 'excluirFuncionario' id=funcionario.id %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
 										</tr>
 									{% endif %}
 								{% endfor %}		
