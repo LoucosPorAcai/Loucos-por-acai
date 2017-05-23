@@ -38,9 +38,6 @@ def perfil_cliente(request):
 def editar_cliente(request):
     return render(request, 'view/editeEdicao.html')
 
-def consultar_cliente(request):
-    return render(request, 'view/ConsultarCF.html')
-
 def index_funcionario(request):
     return render(request, 'view/indexF.html')
 
@@ -59,16 +56,120 @@ def vendas_funcionario(request):
 def delete_estoque(request,id):
     estoque = Estoque.objects.filter(id=id)
     estoque.delete()
-    return HttpResponseRedirect("/consulta_estoque/")
-
-def editar_funcionario(request):
-    return render(request, 'view/editeEdicaoF.html')
+    return HttpResponseRedirect('/consulta_estoque/')
 
 def new_cliente(request):
-    return render(request, 'view/cadF.html')
+    data = {}
+    if request.method == "POST":
 
-def editar_cliente_funcionario(request):
-    return render(request, 'view/editeEdicaoF.html')
+        cliform = ClienteForm(request.POST)
+        usrform = UsuarioForm(request.POST)
+        cartaoform = CartaoForm(request.POST)
+        endform = EnderecoForm(request.POST)
+        telform = TelefoneForm(request.POST)
+
+        if telform.is_valid() and cartaoform.is_valid() and endform.is_valid() and all(
+                [usrform.is_valid() for usr in usrform]) and all([cliform.is_valid() for cli in cliform]):
+            new_telefone = telform.save()
+            new_cartao = cartaoform.save()
+            new_end = endform.save()
+            for usr in usrform:
+                new_user = usrform.save(commit=False)
+                new_user.telefone = new_telefone
+                new_user.endereco = new_end
+                new_user.save()
+                for cli in cliform:
+                    new_cli = cliform.save(commit=False)
+                    new_cli.cartao = new_cartao
+                    new_cli.usuario = new_user
+                    new_cli.save()
+
+    else:
+        cliform = ClienteForm()
+        usrform = UsuarioForm()
+        cartaoform = CartaoForm()
+        endform = EnderecoForm()
+        telform = TelefoneForm()
+
+    data['clientes'] = cliform
+    data['usuarios'] = usrform
+    data['cartoes'] = cartaoform
+    data['enderecos'] = endform
+    data['telefones'] = telform
+
+    return render(request, 'view/CadF.html', data)
+
+def consultar_cliente(request):
+    data = {}
+    data['clientes'] = Cliente.objects.all()
+    data['usuarios'] = Usuario.objects.all()
+
+    return render(request, 'view/ConsultarCF.html',data)
+
+def editar_cliente_funcionario(request,id):
+
+    data = {}
+    cliente = Cliente.objects.get(pk=id)
+    usuario = cliente.usuario
+
+    if request.method == "POST":
+
+        cliform = ClienteForm(request.POST, instance=cliente)
+        usrform = UsuarioForm(request.POST, instance=usuario)
+        cartaoform = CartaoForm(request.POST, instance=cliente.cartao)
+        endform = EnderecoForm(request.POST, instance=usuario.endereco)
+        telform = TelefoneForm(request.POST, instance=usuario.telefone)
+
+        if telform.is_valid() and cartaoform.is_valid() and endform.is_valid() and all(
+                [usrform.is_valid() for usr in usrform]) and all([cliform.is_valid() for cli in cliform]):
+
+            new_telefone = telform.save()
+            new_cartao = cartaoform.save()
+            new_end = endform.save()
+
+            for usr in usrform:
+                new_user = usrform.save(commit=False)
+                new_user.telefone = new_telefone
+                new_user.endereco = new_end
+                new_user.save()
+
+                for cli in cliform:
+                    new_cli = cliform.save(commit=False)
+                    new_cli.cartao = new_cartao
+                    new_cli.usuario = new_user
+                    new_cli.save()
+
+    else:
+        cliform = ClienteForm(instance=cliente)
+        usrform = UsuarioForm(instance=usuario)
+        cartaoform = CartaoForm(instance=cliente.cartao)
+        endform = EnderecoForm(instance=usuario.endereco)
+        telform = TelefoneForm(instance=usuario.telefone)
+
+    data['clientes'] = cliform
+    data['usuarios'] = usrform
+    data['cartoes'] = cartaoform
+    data['enderecos'] = endform
+    data['telefones'] = telform
+
+    return render(request, 'view/editeEdicaoF.html', data)
+
+def excluir_cliente(request, id):
+
+    cliente = Cliente.objects.get(pk=id)
+    usuario = cliente.usuario
+    cartao = cliente.cartao
+    telefone = usuario.telefone
+    endereco = usuario.endereco
+
+    endereco.delete()
+    telefone.delete()
+    cartao.delete()
+    usuario.delete()
+    cliente.delete()
+
+    return HttpResponseRedirect('/funcionario/')
+
 
 def index_gerente(request):
     return render(request, 'view/indexG.html')
@@ -109,6 +210,7 @@ def new_funcionario(request):
                     new_func.tipo_funcionario = new_tipo
                     new_func.usuario = new_user
                     new_func.save()
+
 
     else:
         funcform = FuncionarioForm()
@@ -166,6 +268,7 @@ def editar_funcionario_gerente(request, id):
                     new_func.tipo_funcionario = new_tipo
                     new_func.usuario = new_user
                     new_func.save()
+        return HttpResponseRedirect("/consultarFunc/")
 
     else:
         funcform = FuncionarioForm(instance=funcionario)
@@ -199,7 +302,6 @@ def excluir_funcionario_gerente(request, id):
     tipo.delete()
     usuario.delete()
     funcionario.delete()
-
 
     return HttpResponseRedirect('/consultarFunc/')
 

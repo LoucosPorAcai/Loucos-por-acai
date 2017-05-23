@@ -28,7 +28,7 @@
 							    <ul class="dropdown-menu">
 							      <li><a href="{% url 'vendas' %}">Venda</a></li>
 							      <li><a href="{% url 'cadastroFunc' %}">Cadastro</a></li>
-							      <li><a href="{% url 'editeEdicaoFunc' %}">Editar</a></li>
+							      <li><a href="#">Editar</a></li>
 							      <li><a href="#">Sair</a></li> 
 							    </ul>
 							</div>
@@ -69,26 +69,18 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-					      <tr >
-					        <td>1. Gilberto Viana Lima Filho</td>
-					        <td><a href="{% url 'editeEdicaoFunc' %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-					        <td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
-					      </tr>
-					      <tr>
-					        <td>2. Lyza Guynever</td>
-					        <td><a href="{% url 'editeEdicaoFunc' %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-					        <td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
-					      </tr>
-					      <tr>
-					        <td>3. Naryane Castro</td>
-					        <td><a href="{% url 'editeEdicaoFunc' %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-					        <td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
-					      </tr>
-					      <tr>
-					        <td>4. Paulo Italo</td>
-					        <td><a href="{% url 'editeEdicaoFunc' %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
-					        <td><a href=""><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
-					      </tr>
+							
+							{% for cliente in clientes %}
+								{% for usuario in usuarios %}
+										{% if usuario.id == cliente.usuario.id %}
+											<tr >
+												<td>{{cliente.usuario.nome}} {{cliente.usuario.sobrenome}}</td>
+												<td><a href="{% url 'editeEdicaoFunc' id=cliente.id %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ed.ico'%}"></a></td>
+												<td><a href="{% url 'excluirCliente' id=cliente.id %}"><img class="img-responsive botao centralizar" src="{% static 'imagens/ex.png'%}"></a></td>
+											</tr>
+										{% endif %}
+								{% endfor %}		
+							{% endfor %}
 					    </tbody>
 					  </table>
 				  </div>

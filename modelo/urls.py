@@ -4,7 +4,7 @@ from . import views
 
 urlpatterns = [
 
-    url(r'^$', views.index_gerente, name='index'),
+    url(r'^$', views.index_funcionario, name='index'),
     url(r'^cardapio/$', views.menu, name='menu'),
     url(r'^sobre/$', views.sobre, name='sobre'),
     url(r'^contato/$', views.contato, name='contato'),
@@ -22,8 +22,8 @@ urlpatterns = [
     url(r'^funcionario/venda/$', views.vendas_funcionario, name='vendas'),
     url(r'^funcionario/cadastro_cliente/$', views.new_cliente, name='cadastroFunc'),
     url(r'^funcionario/consulta_cliente/$', views.consultar_cliente, name='consultaC'),
-    url(r'^funcionario/editar_cliente/$', views.editar_cliente_funcionario, name='editeEdicaoCliente'),
-    url(r'^funcionario/editar/$', views.editar_funcionario, name='editeEdicaoFunc'),
+    url(r'^funcionario/consulta_cliente/editar_cliente/(?P<id>[0-9]+)/$', views.editar_cliente_funcionario, name='editeEdicaoFunc'),
+    url(r'^funcionario/consulta_cliente/excluir_cliente/(?P<id>[0-9]+)/$', views.excluir_cliente, name='excluirCliente'),
     url(r'^gerente/index/$', views.index_gerente, name='indexGeren'),
     url(r'^gerente/menu/$', views.menu_gerente, name='cardapioGeren'),
     url(r'^gerente/sobre/$', views.sobre_gerente, name='sobreNosGeren'),

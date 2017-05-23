@@ -69,7 +69,8 @@
 				  <a href="{% url 'consultarFunc'%}"><button type="submit" class="btn meu alinhar">Consultar</button></a>
 				    <img class="img-responsive centralizar tama" src="{% static 'imagens/akivo.png' %}"><h2>Cadastrar Funcionario</h2>
 				<div class="linha2"></div>
-				<form method="POST" class="form-horizontal mei">	{% csrf_token %}
+				<form method="POST" class="form-horizontal mei">{% csrf_token %}
+
 						{{ usuarios.as_p }}
 						{{ enderecos.as_p }}
 						{{ telefones.as_p }}
@@ -180,9 +181,7 @@
 				    </div>
 				  </div>
 				</form>
-				
 				  </div>
-				  
 				{% endblock %}
 				  </div>
 				  

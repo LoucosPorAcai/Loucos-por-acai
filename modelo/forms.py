@@ -1,11 +1,5 @@
 from django import forms
-from .models import Estoque
-from .models import Funcionario
-from .models import Usuario
-from .models import Telefone
-from .models import Endereco
-from .models import Tipofuncionario
-from .models import Situacao
+from .models import *
 
 class EstoqueForm(forms.ModelForm):
 
@@ -53,3 +47,16 @@ class SituacaoForm(forms.ModelForm):
 
         model = Situacao
         fields = ('descricao',)
+
+class ClienteForm(forms.ModelForm):
+
+    class Meta:
+        model = Cliente
+        fields = ('max_pontos',)
+        exclude = ('usuario','cartao',)
+
+class CartaoForm(forms.ModelForm):
+
+    class Meta:
+        model = Cartao
+        fields = ('quant_pontos',)

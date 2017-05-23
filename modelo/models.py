@@ -77,6 +77,7 @@ class Cliente(models.Model):
 
     usuario = models.ForeignKey(Usuario, blank=True, null=False)
     cartao = models.ForeignKey(Cartao, blank=True, null=False)
+    max_pontos = models.IntegerField(max_length=3,null=True)
 
     class Meta:
         db_table = 'modelo_cliente'
