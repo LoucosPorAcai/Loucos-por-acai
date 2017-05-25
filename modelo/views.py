@@ -18,7 +18,18 @@ def contato(request):
     return render(request, 'view/contato.html')
 
 def login(request):
-    return render(request, 'view/login.html')
+    data = {}
+
+    if request.method == "POST":
+        form = LoginForm(request.POST)
+
+        if form.is_valid():
+            pass
+    else:
+        form = LoginForm()
+        
+    data['login'] = form
+    return render(request, 'view/login.html', data)
 
 def index_cliente(request):
     return render(request, 'view/indexC.html')

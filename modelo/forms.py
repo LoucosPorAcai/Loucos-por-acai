@@ -60,3 +60,9 @@ class CartaoForm(forms.ModelForm):
     class Meta:
         model = Cartao
         fields = ('quant_pontos',)
+
+class LoginForm (forms.ModelForm):
+    class Meta:
+        model = Usuario
+        fields = ('login','senha',)
+        exclude = ('nome','sobrenome','cpf','email','endereco','telefone',)
