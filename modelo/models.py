@@ -1,3 +1,4 @@
+# coding: utf-8
 # This is an auto-generated Django model module.
 # You'll have to do the following manually to clean this up:
 #   * Rearrange models' order
@@ -5,9 +6,20 @@
 #   * Make sure each ForeignKey has `on_delete` set to the desired behavior.
 #   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
 # Feel free to rename the models, but don't rename db_table values or field names.
-from __future__ import unicode_literals
 
+from __future__ import unicode_literals
+from django.contrib.auth.models import User
 from django.db import models
+TIPO_CHOICES = (
+        ('F', 'Funcionario'),
+        ('G', 'Gerente')
+    )
+DESCRICAO_CHOICES = (
+
+    ('I', 'Inativo'),
+    ('A', 'Ativo'),
+
+)
 
 class Estoque(models.Model):
 
@@ -52,12 +64,13 @@ class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=45)
     sobrenome = models.CharField(max_length=45)
-    cpf = models.CharField(max_length=14)
-    login = models.CharField(max_length=45)
-    senha = models.CharField(max_length=45)
+    cpf = models.CharField(max_length=14, null=False)
+    login = models.CharField(max_length=45, null=True)
+    senha = models.CharField(max_length=45, null=True)
     email = models.CharField(max_length=45)
     endereco = models.ForeignKey(Endereco,blank=True, null=False)
     telefone = models.ForeignKey(Telefone, blank=True, null=False)
+    user = models.OneToOneField(User, default=1)
 
     class Meta:
         db_table = 'modelo_usuario'
@@ -74,10 +87,9 @@ class Cartao(models.Model):
 class Cliente(models.Model):
 
     id = models.AutoField(primary_key=True)
-
     usuario = models.ForeignKey(Usuario, blank=True, null=False)
     cartao = models.ForeignKey(Cartao, blank=True, null=False)
-    max_pontos = models.IntegerField(max_length=3,null=True)
+    max_pontos = models.IntegerField(null=True)
 
     class Meta:
         db_table = 'modelo_cliente'
@@ -86,7 +98,7 @@ class Cliente(models.Model):
 class Situacao(models.Model):
 
     id = models.AutoField(primary_key=True)  # AutoField?
-    descricao = models.CharField(max_length=45)
+    descricao = models.CharField(max_length=45,choices=DESCRICAO_CHOICES, default=TIPO_CHOICES[0], null=False)
 
     class Meta:
         db_table = 'modelo_situacao'
@@ -94,11 +106,14 @@ class Situacao(models.Model):
 
 class Tipofuncionario(models.Model):
 
+
     id = models.AutoField(primary_key=True)  # AutoField?
-    desc_tipo = models.CharField(max_length=45)
+    desc_tipo = models.CharField(max_length=45, choices=TIPO_CHOICES, default=TIPO_CHOICES[0], null=False)
 
     class Meta:
         db_table = 'modelo_tipoFuncionario'
+
+
 
 
 class Funcionario (models.Model):

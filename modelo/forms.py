@@ -18,8 +18,8 @@ class UsuarioForm(forms.ModelForm):
 
     class Meta:
         model = Usuario
-        fields = ('nome','sobrenome','cpf','login','senha','email',)
-        exclude = ('endereco','telefone',)
+        fields = ('nome','sobrenome','email','cpf',)
+        exclude = ('login','senha','endereco','telefone',)
 
 class TelefoneForm(forms.ModelForm):
 

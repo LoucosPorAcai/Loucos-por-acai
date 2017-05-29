@@ -2,13 +2,14 @@ from django.conf.urls import include, url
 from . import views
 
 
+
 urlpatterns = [
 
     url(r'^$', views.index, name='index'),
     url(r'^cardapio/$', views.menu, name='menu'),
     url(r'^sobre/$', views.sobre, name='sobre'),
     url(r'^contato/$', views.contato, name='contato'),
-    url(r'^login/$', views.login, name='login'),
+    url(r'^login/$', views.logar, name='login'),
     url(r'^cliente/$', views.index_cliente, name='indexCliente'),
     url(r'^cliente/cardapio/$', views.menu_cliente, name='cardapioCliente'),
     url(r'^cliente/sobre/$', views.sobre_cliente, name='sobreNosCliente'),
@@ -24,7 +25,7 @@ urlpatterns = [
     url(r'^funcionario/consulta_cliente/$', views.consultar_cliente, name='consultaC'),
     url(r'^funcionario/consulta_cliente/editar_cliente/(?P<id>[0-9]+)/$', views.editar_cliente_funcionario, name='editeEdicaoFunc'),
     url(r'^funcionario/consulta_cliente/excluir_cliente/(?P<id>[0-9]+)/$', views.excluir_cliente, name='excluirCliente'),
-    url(r'^gerente/index/$', views.index_gerente, name='indexGeren'),
+    url(r'^gerente/$', views.index_gerente, name='indexGeren'),
     url(r'^gerente/menu/$', views.menu_gerente, name='cardapioGeren'),
     url(r'^gerente/sobre/$', views.sobre_gerente, name='sobreNosGeren'),
     url(r'^gerente/contato/$', views.contato_gerente, name='contatoGeren'),
@@ -38,6 +39,7 @@ urlpatterns = [
     url(r'^gerente/consulta_estoque/$', views.consulta_estoque, name='consulta_estoque'),
     url(r'^gerente/consulta_estoque/edicao/(?P<pk>[0-9]+)/$', views.edita_estoque, name='edita_estoque'),
     url(r'^gerente/consulta_estoque/deletar/(?P<id>[0-9]+)/$', views.delete_estoque, name='delete_estoque'),
+    url(r'^logout/$', views.logout, name='logout')
 
 
 ]

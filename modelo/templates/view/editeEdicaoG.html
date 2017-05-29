@@ -71,12 +71,14 @@
 				    <img class="img-responsive centralizar tama" src="{% static 'imagens/akivo.png' %}"><h2>Editar Funcionario</h2>
 				<div class="linha2"></div>
 				<form class="form-horizontal mei"> {% csrf_token %}
+
 						{{ usuarios.as_p }}
 						{{ enderecos.as_p }}
 						{{ telefones.as_p }}
 						{{ funcionarios.as_p }}
 						{{ tipos.as_p }}
 						{{ situacoes.as_p }}
+				
 
 
 					<!--
