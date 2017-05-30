@@ -12,6 +12,9 @@ from django.contrib import messages
 def index(request):
     return render(request, 'view/index.html')
 
+def index_redirect(request):
+    return HttpResponseRedirect('home/')
+
 def menu(request):
     return render(request, 'view/cardapio.html')
 
@@ -53,7 +56,7 @@ def logar(request):
 
 def deslogar(request):
     logout(request)
-    return HttpResponseRedirect('')
+    return HttpResponseRedirect('/home/')
 
 
 def index_cliente(request):
