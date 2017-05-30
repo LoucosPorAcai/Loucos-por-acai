@@ -38,8 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'modelo',
-
 ]
+INSTALLED_APPS += ('global_permissions',)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

@@ -5,8 +5,11 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.models import Group
+from django.contrib.auth.decorators import login_required
+from django.core.exceptions import PermissionDenied
 from .forms import *
 from .models import *
+
 from django.contrib import messages
 
 def index(request):
@@ -54,50 +57,90 @@ def logar(request):
 
     return render(request, 'view/login.html', data)
 
+@login_required(login_url='/login/')
 def deslogar(request):
     logout(request)
     return HttpResponseRedirect('/home/')
 
-
+@login_required(login_url='/login/')
 def index_cliente(request):
+    if not request.user.has_perm('global_permissions.acessar_cliente'):
+        raise PermissionDenied
     return render(request, 'view/indexC.html')
 
+@login_required(login_url='/login/')
 def menu_cliente(request):
+    if not request.user.has_perm('global_permissions.acessar_cliente'):
+        raise PermissionDenied
     return render(request, 'view/cardapioC.html')
 
+@login_required(login_url='/login/')
 def sobre_cliente(request):
+    if not request.user.has_perm('global_permissions.acessar_cliente'):
+        raise PermissionDenied
     return render(request, 'view/sobreNosC.html')
 
+@login_required(login_url='/login/')
 def contato_cliente(request):
+    if not request.user.has_perm('global_permissions.acessar_cliente'):
+        raise PermissionDenied
     return render(request, 'view/contatoC.html')
 
+@login_required(login_url='/login/')
 def perfil_cliente(request):
+    if not request.user.has_perm('global_permissions.acessar_cliente'):
+        raise PermissionDenied
     return render(request, 'view/perfil.html')
 
+@login_required(login_url='/login/')
 def editar_cliente(request):
+    if not request.user.has_perm('global_permissions.acessar_cliente'):
+        raise PermissionDenied
+
     return render(request, 'view/editeEdicao.html')
 
+@login_required(login_url='/login/')
 def index_funcionario(request):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     return render(request, 'view/indexF.html')
 
+@login_required(login_url='/login/')
 def menu_funcionario(request):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     return  render(request, 'view/cardapioF.html')
 
+@login_required(login_url='/login/')
 def sobre_funcionario(request):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     return  render(request, 'view/sobreNosF.html')
 
+@login_required(login_url='/login/')
 def contato_funcionario(request):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     return render(request, 'view/contatoF.html')
 
+@login_required(login_url='/login/')
 def vendas_funcionario(request):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     return render(request, 'view/venda.html')
 
+@login_required(login_url='/login/')
 def delete_estoque(request,id):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     estoque = Estoque.objects.filter(id=id)
     estoque.delete()
     return HttpResponseRedirect('/gerente/consulta_estoque/')
 
+@login_required(login_url='/login/')
 def new_cliente(request):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     data = {}
     if request.method == "POST":
 
@@ -147,15 +190,20 @@ def new_cliente(request):
 
     return render(request, 'view/CadF.html', data)
 
+@login_required(login_url='/login/')
 def consultar_cliente(request):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     data = {}
     data['clientes'] = Cliente.objects.all()
     data['usuarios'] = Usuario.objects.all()
 
     return render(request, 'view/ConsultarCF.html',data)
 
+@login_required(login_url='/login/')
 def editar_cliente_funcionario(request,id):
-
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     data = {}
     cliente = Cliente.objects.get(pk=id)
     usuario = cliente.usuario
@@ -207,8 +255,10 @@ def editar_cliente_funcionario(request,id):
 
     return render(request, 'view/editeEdicaoF.html', data)
 
+@login_required(login_url='/login/')
 def excluir_cliente(request, id):
-
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
     cliente = Cliente.objects.get(pk=id)
     usuario = cliente.usuario
     cartao = cliente.cartao
@@ -225,19 +275,34 @@ def excluir_cliente(request, id):
 
     return HttpResponseRedirect('/funcionario/consulta_cliente/')
 
+@login_required(login_url='/login/')
 def index_gerente(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     return render(request, 'view/indexG.html')
 
+@login_required(login_url='/login/')
 def menu_gerente(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     return render(request, 'view/cardapioG.html')
 
+@login_required(login_url='/login/')
 def sobre_gerente(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     return render(request, 'view/sobreNosG.html')
 
+@login_required(login_url='/login/')
 def contato_gerente(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     return render(request, 'view/contatoG.html')
 
+@login_required(login_url='/login/')
 def new_funcionario(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     data = {}
 
     if request.method == "POST":
@@ -299,15 +364,19 @@ def new_funcionario(request):
 
     return render(request, 'view/cadG.html', data)
 
+@login_required(login_url='/login/')
 def consultar_funcionario(request):
-
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     data = {}
     data['funcionarios'] = Funcionario.objects.all()
     data['usuarios'] = Usuario.objects.all()
     return render(request, 'view/ConsultarF.html', data)
 
+@login_required(login_url='/login/')
 def editar_funcionario_gerente(request, id):
-
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     data = {}
     funcionario = Funcionario.objects.get(pk=id)
     usuario = funcionario.usuario
@@ -372,8 +441,10 @@ def editar_funcionario_gerente(request, id):
 
     return render(request, 'view/editeEdicaoG.html', data)
 
+@login_required(login_url='/login/')
 def excluir_funcionario_gerente(request, id):
-
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     funcionario = Funcionario.objects.get(pk=id)
     usuario = funcionario.usuario
     tipo = funcionario.tipo_funcionario
@@ -392,19 +463,30 @@ def excluir_funcionario_gerente(request, id):
     funcionario.delete()
     return HttpResponseRedirect('/gerente/consultar_funcionario/')
 
+@login_required(login_url='/login/')
 def consultar_historico(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     return render(request, 'view/consultarH.html')
 
+@login_required(login_url='/login/')
 def vendas_gerente(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     return render(request, 'view/vendaG.html')
 
+@login_required(login_url='/login/')
 def consulta_estoque(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     data = {}
     data['estoques'] = Estoque.objects.all()
     return render(request,'view/ConsultarE.html',data)
 
+@login_required(login_url='/login/')
 def edita_estoque(request,pk):
-
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     data = {}
     estoque = get_object_or_404(Estoque, pk=pk)
 
@@ -418,11 +500,12 @@ def edita_estoque(request,pk):
         form = EstoqueForm(instance=estoque)
 
     data['form'] = form
-
     return render(request, 'view/editeEdicaoE.html', data)
 
-
+@login_required(login_url='/login/')
 def new_estoque(request):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
     data = {}
 
     if request.method == "POST":
