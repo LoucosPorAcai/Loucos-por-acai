@@ -1,6 +1,7 @@
 from django import forms
 from .models import *
 
+
 class EstoqueForm(forms.ModelForm):
 
     class Meta:
@@ -66,3 +67,7 @@ class LoginForm (forms.ModelForm):
         model = Usuario
         fields = ('login','senha',)
         exclude = ('nome','sobrenome','cpf','email','endereco','telefone',)
+
+class BuscaForm (forms.Form):
+    CPF = models.CharField(max_length=11)
+

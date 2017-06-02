@@ -11,9 +11,9 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 TIPO_CHOICES = (
-        ('F', 'Funcionario'),
-        ('G', 'Gerente')
-    )
+    ('F', 'Funcionario'),
+    ('G', 'Gerente'),
+)
 DESCRICAO_CHOICES = (
 
     ('I', 'Inativo'),
@@ -52,7 +52,7 @@ class Telefone(models.Model):
 
     id = models.AutoField(primary_key=True)  # AutoField?
     ddd1 = models.IntegerField()
-    numero1 = models.CharField(max_length=15)
+    numero1 = models.CharField(max_length=15,)
     ddd2 = models.IntegerField(blank=True, null=True)
     numero2 = models.CharField(max_length=15, blank=True, null=True)
 
@@ -64,7 +64,7 @@ class Usuario(models.Model):
     id = models.AutoField(primary_key=True)
     nome = models.CharField(max_length=45)
     sobrenome = models.CharField(max_length=45)
-    cpf = models.CharField(max_length=14, null=False)
+    cpf = models.CharField(max_length=14, null=False, unique=True)
     login = models.CharField(max_length=45, null=True)
     senha = models.CharField(max_length=45, null=True)
     email = models.CharField(max_length=45)
@@ -74,6 +74,34 @@ class Usuario(models.Model):
 
     class Meta:
         db_table = 'modelo_usuario'
+
+    def isCliente(self):
+
+        user = self.user
+        groups = user.groups
+        for group in user.groups.all():
+            if group.name == 'cliente':
+                return True
+            return False
+
+
+    def isFuncionario(self):
+        user = self.user
+        groups = user.groups
+        for group in user.groups.all():
+            if group.name == 'funcionario':
+                return True
+            return False
+
+    def isGerente(self):
+
+        user = self.user
+        groups = user.groups
+        for group in user.groups.all():
+            if group.name == 'gerente':
+                return True
+            return False
+
 
 class Cartao(models.Model):
 
@@ -112,9 +140,6 @@ class Tipofuncionario(models.Model):
 
     class Meta:
         db_table = 'modelo_tipoFuncionario'
-
-
-
 
 class Funcionario (models.Model):
 
@@ -165,3 +190,10 @@ class Trocapontos(models.Model):
 
     class Meta:
         db_table = 'modelo_trocapontos'
+
+
+#Metodos Estaticos
+
+def getUsuarioByCpf(cpf):
+    usuario = Usuario.objects.get(cpf=cpf)
+    return usuario

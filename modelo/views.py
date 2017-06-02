@@ -1,3 +1,4 @@
+#_*_coding:latin-1_*_
 from django.http import HttpResponseRedirect
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404
@@ -6,7 +7,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
-from django.core.exceptions import PermissionDenied
+from django.core.exceptions import *
 from .forms import *
 from .models import *
 
@@ -125,9 +126,34 @@ def contato_funcionario(request):
 
 @login_required(login_url='/login/')
 def vendas_funcionario(request):
+    data={}
+
     if not request.user.has_perm('global_permissions.acessar_funcionario'):
         raise PermissionDenied
-    return render(request, 'view/venda.html')
+    if request.method == 'POST':
+        cpf = request.POST.get('CPF')
+        try:
+            usuario = getUsuarioByCpf(cpf)
+            if usuario.isCliente():
+                telefone = usuario.telefone
+                endereco = usuario.endereco
+                data['cpf'] = usuario.cpf
+                data['nome'] = usuario.nome
+                data['ddd1'] = telefone.ddd1
+                data['numero1'] = telefone.numero1
+                data['rua'] = endereco.rua
+                data['numero'] = endereco.numero_casa
+                data['complemento'] = endereco.complemento
+                data['bairro'] = endereco.bairro
+                data['cidade'] = endereco.cidade
+                return render(request, 'view/venda.html', data)
+            else:
+                return HttpResponse("Usuário não é cliente")
+
+        except Usuario.DoesNotExist:
+            return HttpResponse("Usuário não existe")
+    else:
+        return render(request, 'view/venda.html')
 
 @login_required(login_url='/login/')
 def delete_estoque(request,id):
