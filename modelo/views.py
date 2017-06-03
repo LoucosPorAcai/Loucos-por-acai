@@ -29,34 +29,27 @@ def contato(request):
     return render(request, 'view/contato.html')
 
 def logar(request):
-    data = {}
 
-    if request.method == "POST":
-        form = AuthenticationForm(request.POST)
-        if form.is_valid:
-            usuario = request.POST['username']
-            senha = request.POST['password']
-            user = authenticate(username=usuario, password=senha)
-
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    if user.username == 'admin':
-                        return HttpResponseRedirect('/admin/')
-                    for group in user.groups.all():
-                        if group.name == 'cliente':
-                            return HttpResponseRedirect('/cliente/')
-                        elif group.name == 'funcionario':
-                            return HttpResponseRedirect('/funcionario/')
-                        elif group.name == 'gerente':
-                            return HttpResponseRedirect('/gerente/')
-
+    if request.method == 'POST':
+        usuario = request.POST.get('username')
+        senha = request.POST.get('password')
+        user = authenticate(username=usuario, password=senha)
+        if user is not None:
+            if user.is_active:
+                login(request, user)
+                if user.username == 'admin':
+                    return HttpResponseRedirect('/admin/')
+                for group in user.groups.all():
+                    if group.name == 'cliente':
+                        return HttpResponseRedirect('/cliente/')
+                    elif group.name == 'funcionario':
+                        return HttpResponseRedirect('/funcionario/')
+                    elif group.name == 'gerente':
+                        return HttpResponseRedirect('/gerente/')
+        else:
+            return HttpResponse('usuário não encontrado')
     else:
-        form = AuthenticationForm()
-
-    data['login'] = form
-
-    return render(request, 'view/login.html', data)
+        return render(request, 'view/login.html')
 
 @login_required(login_url='/login/')
 def deslogar(request):
