@@ -12,12 +12,70 @@ a:hover{
 	color: white;
 }
 
+.geral{
+	margin-left: 9%; 
+	margin-bottom: 2%;
+}
+
+.lal{
+	margin-right: 11%;
+}
+
+.imp{
+	width: 40%;
+
+}
+
+.lal2{
+	margin-left: -9%;
+}
+
 .tamanho{
 	width: 50%;
 	height: 50%;
 	float: right;
 }
 
+.imp2{
+	width: 60%;
+}
+
+.lal3{
+	margin-right: 10%;
+}
+
+.imp3{
+	width: 40%;
+}
+
+.lal4{
+	margin-left: -11%;
+}
+
+.imp4{
+	width: 60%;
+}
+
+.geral{
+	margin-left: 9%;
+}
+
+.geral3{
+	margin-left: 0.5%;
+}
+
+.interno{
+	width: 60%;
+}
+
+.imp5{
+	margin-left: 6%;
+	 width: 60%;
+}
+
+.lal5{
+	margin-left: 5%
+}
 .mud{
 	width: 170px;
 	height: 40px;
@@ -25,6 +83,9 @@ a:hover{
 	margin-top: 10%;
 }
 
+.imp6{
+	width: 20%;
+}
 .alinhamento{
 	float: right;
 }
