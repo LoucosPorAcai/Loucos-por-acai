@@ -57,74 +57,70 @@
 		</nav>
 		<section class="container">
 			<div class="borda2">
-				<img class="img-responsive centralizar tama" src="{% static 'imagens/icon.png'%}"><h2>Editar Perfil</h2>
+				<img class="img-responsive centralizar tama" src="{% static 'imagens/icon.png'%}"><h2>Editar Cliente</h2>
 				<div class="linha2"></div>
-				{% block content %}
-				<form method="POST" class="form-horizontal mei"> {% csrf_token %}
+				
+				<form action="/cliente/perfil/editar/" method="POST" 
+				class="form-horizontal mei"> {% csrf_token %}
 
-						{{ clientes.as_p }}
-						{{ usuarios.as_p }}
-						{{ enderecos.as_p }}
-						{{ telefones.as_p }}
-						{{ cartoes.as_p }}
 					
 
-					<!-- 
+					
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">Cpf:</label>
 				    <div class="col-sm-10">
-				      <input type="cpf" class="form-control tam" id="cpf" placeholder="000.000.000.00">
+				      <input name="editar_cliente_cpf" type="cpf" class="form-control tam" id="cpf" placeholder="000.000.000.00">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="name">Nome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" id="nome" placeholder="Gilberto Viana Lima Filho">
+				      <input name="editar_cliente_nome" type="name" class="form-control tam" id="nome" placeholder="Gilberto Viana Lima Filho">
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="endereco">Rua:</label>
+				    <label class="control-label col-sm-2" for="rua">Rua:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="rua" id="endereco" placeholder="">
+				      <input  type="text" class="form-control tam" name="editar_cliente_rua" id="rua" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
-				    <label class="control-label col-sm-2" for="endereco">Nº:</label>
+				    <label class="control-label col-sm-2" for="numero">Nº:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="numero" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_cliente_numero" id="numero" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
-				    <label class="control-label col-sm-2" for="endereco">Bairro:</label>
+				    <label class="control-label col-sm-2" for="bairro">Bairro:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="bairro" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_cliente_bairro" id="bairro" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
-				    <label class="control-label col-sm-2" for="endereco">Cidade:</label>
+				    <label class="control-label col-sm-2" for="cidade">Cidade:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="cidade" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_cliente_cidade" id="cidade" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone">Telefone:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="telefone" placeholder="(85) 9 9793-5406">
+				      <input name="editar_cliente_telefone" type="text" class="form-control tam" id="telefone" placeholder="(85) 9 9793-5406">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="login">Login:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="login" placeholder="gilberto">
+				      <input name="editar_cliente_login" type="text" class="form-control tam" id="login" placeholder="gilberto">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">Senha:</label>
 				    <div class="col-sm-10"> 
-				      <input type="password" class="form-control tam" id="pwd" placeholder="beto">
+				      <input name="editar_cliente_senha" type="password" class="form-control tam" id="pwd" placeholder="beto">
 				    </div>
 				  </div>
-					-->
+				
 				  
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
@@ -132,7 +128,7 @@
 				    </div>
 				  </div>
 				</form>
-				{% endblock %}
+				
 			</div>
 		</section>
 		<footer class="row cor">

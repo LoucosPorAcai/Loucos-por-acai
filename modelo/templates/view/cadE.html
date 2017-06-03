@@ -63,60 +63,43 @@
 				  <li class="active"><a data-toggle="tab" href="#home">Estoque</a></li>
 				  
 				</ul>
-				{% block content %}
+				
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
 				  <a href="{% url 'consulta_estoque' %}"><button type="submit" class="btn meu alinhar">Consultar</button></a>
 				      <img class="img-responsive centralizar tama" src="{% static 'imagens/estoque.png' %}"><h2>Cadastrar Estoque</h2>
 				<div class="linha2"></div>
 				
-				<form method="POST" class="form-horizontal mei"> {% csrf_token %}
+				<form action="/gerente/cadastro_estoque/" method="POST" class="form-horizontal mei"> 
+				{% csrf_token %}
 
-						{{form.as_p}}
+						
 					
-						<!--<div class="form-group">
+						<div class="form-group">
 							<label class="control-label col-sm-2" for="nome">Nome :</label>
 							<div class="col-sm-10">
-								<input type="text" class="form-control tam" id="nome" placeholder="">
+								<input name="nome_estoque" type="text" class="form-control tam" id="nome" placeholder="">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="quantidade">Quatidade:</label>
 							<div class="col-sm-10"> 
-								<input type="text" class="form-control tam" id="quantidade" placeholder="">
+								<input name="quantidade_estoque" type="text" class="form-control tam" id="quantidade" placeholder="">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="marca">Marca:</label>
 							<div class="col-sm-10"> 
-								<input type="text" class="form-control tam" id="marca" placeholder="">
+								<input name="marca_estoque" type="text" class="form-control tam" id="marca" placeholder="">
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-sm-2" for="limite">Limite:</label>
 							<div class="col-sm-10"> 
-								<input type="text" class="form-control tam" id="limite" placeholder="">
+								<input name="limite_estoque" type="text" class="form-control tam" id="limite" placeholder="">
 							</div>
 						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="limite">Limite:</label>
-							<div class="col-sm-10"> 
-								<input type="text" class="form-control tam" id="limite" placeholder="">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="limite">Limite:</label>
-							<div class="col-sm-10"> 
-								<input type="text" class="form-control tam" id="limite" placeholder="">
-							</div>
-						</div>
-						<div class="form-group">
-							<label class="control-label col-sm-2" for="limite">Limite:</label>
-							<div class="col-sm-10"> 
-								<input type="text" class="form-control tam" id="limite" placeholder="">
-							</div>
-						</div>
-					-->
+						
 				  
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
@@ -124,7 +107,7 @@
 				    </div>
 				  </div>
 				</form>
-				{% endblock %}
+				
 				  </div>
 				  </div>
 				  <div id="menu1" class="tab-pane fade">

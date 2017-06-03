@@ -59,59 +59,59 @@
 			<div class="borda2">
 				<img class="img-responsive centralizar tama" src="{% static 'imagens/icon.png'%}"><h2>Editar Cadastro</h2>
 				<div class="linha2"></div>
-				<form class="form-horizontal mei">
+				<form method="POST" action="/cliente/perfil/editar/" class="form-horizontal mei">
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">Cpf:</label>
 				    <div class="col-sm-10">
-				      <input type="cpf" class="form-control tam" id="cpf" placeholder="">
+				      <input name="editar_cpf" type="cpf" class="form-control tam" id="cpf" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="name">Nome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" id="nome" placeholder="">
+				      <input name="editar_nome" type="name" class="form-control tam" id="nome" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Rua:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="rua" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_rua" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Nº:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="numero" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_numero" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Bairro:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="bairro" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_bairro" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Cidade:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="cidade" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_cidade" id="endereco" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone">Telefone:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="telefone" placeholder="">
+				      <input name="editar_telefone" type="text" class="form-control tam" id="telefone" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="login">Login:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="login" placeholder="">
+				      <input name="editar_login" type="text" class="form-control tam" id="login" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">Senha:</label>
 				    <div class="col-sm-10"> 
-				      <input type="password" class="form-control tam" id="pwd" placeholder="">
+				      <input name="editar_senha" type="password" class="form-control tam" id="pwd" placeholder="">
 				    </div>
 				  </div>
 				  

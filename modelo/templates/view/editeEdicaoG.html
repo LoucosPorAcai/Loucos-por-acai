@@ -65,103 +65,93 @@
 				<ul class="nav nav-tabs">
 				  <li class="active"><a data-toggle="tab" href="#home">Funcionario</a></li>
 				</ul>
-				{% block content %}
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
 				    <img class="img-responsive centralizar tama" src="{% static 'imagens/akivo.png' %}"><h2>Editar Funcionario</h2>
 				<div class="linha2"></div>
-				<form class="form-horizontal mei"> {% csrf_token %}
+				<form method="POST" action="/gerente/consultar_funcionario/editar_funcionario/" class="form-horizontal mei"> 
+				{% csrf_token %}
 
-						{{ usuarios.as_p }}
-						{{ enderecos.as_p }}
-						{{ telefones.as_p }}
-						{{ funcionarios.as_p }}
-						{{ tipos.as_p }}
-						{{ situacoes.as_p }}
-				
-
-
-					<!--
-				  <div class="form-group">
+			  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">Cpf:</label>
 				    <div class="col-sm-10">
-				      <input type="cpf" class="form-control tam" id="cpf" placeholder="{{ usuario.cpf }}">
+				      <input name="editar_funcionario_cpf" type="cpf" class="form-control tam" id="cpf" placeholder="{{ usuario.cpf }}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="name">Nome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" id="nome" placeholder="{{ usuario.nome }}">
+				      <input name="editar_funcionario_nome" type="name" class="form-control tam" id="nome" placeholder="{{ usuario.nome }}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Rua:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="rua" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_funcionario_rua" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Nº:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="numero" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_funcionario_numero" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Bairro:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="bairro" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_funcionario_bairro" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">Cidade:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="cidade" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="editar_funcionario_cidade" id="endereco" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone">Telefone:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="telefone" placeholder="{{telefone.dd1}} {{telefone.numero1}}">
+				      <input name="editar_funcionario_telefone" type="text" class="form-control tam" id="telefone" placeholder="{{telefone.dd1}} {{telefone.numero1}}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="salario">Salario:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="salario" placeholder="{{funcionario.salario}}">
+				      <input name="editar_funcionario_salario" type="text" class="form-control tam" id="salario" placeholder="{{funcionario.salario}}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="periodo">Periodo de Trabalho:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="periodo" placeholder="">
+				      <input name="editar_funcionario_periodo" type="text" class="form-control tam" id="periodo" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cargo">Cargo:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="cargo" placeholder="">
+				      <input name="editar_funcionario_cargo" type="text" class="form-control tam" id="cargo" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="login">Login:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" id="login" placeholder="{{usuario.login}}">
+				      <input name="editar_funcionario_login" type="text" class="form-control tam" id="login" placeholder="{{usuario.login}}">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">Senha:</label>
 				    <div class="col-sm-10"> 
-				      <input type="password" class="form-control tam" id="pwd" placeholder="{{usuario.senha}}">
+				      <input name="editar_funcionario_senha" type="password" class="form-control tam" id="pwd" placeholder="{{usuario.senha}}">
 				    </div>
 				  </div>
-				-->
+				
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
 				      <button type="submit" class="btn meu">Editar</button>
 				    </div>
 				  </div>
 				</form>		
-				{% endblock %}		  
+						  
 			</div>
 		</section>
 		<footer class="row cor">
