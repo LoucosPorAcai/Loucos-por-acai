@@ -37,8 +37,8 @@ urlpatterns = [
     url(r'^gerente/venda/$', views.vendas_gerente, name='vendasGeren'),
     url(r'^gerente/cadastro_estoque/$', views.new_estoque, name='cadastroEstoque'),
     url(r'^gerente/consulta_estoque/$', views.consulta_estoque, name='consulta_estoque'),
-    url(r'^gerente/consulta_estoque/edicao/(?P<pk>[0-9]+)/$', views.edita_estoque, name='edita_estoque'),
-    url(r'^gerente/consulta_estoque/deletar/(?P<id>[0-9]+)/$', views.delete_estoque, name='delete_estoque'),
+    url(r'^gerente/consulta_estoque/edicao/(?P<pk>[0-9]+)$', views.edita_estoque, name='edita_estoque'),
+    url(r'^gerente/consulta_estoque/deletar/(?P<pk>[0-9]+)/$', views.delete_estoque, name='delete_estoque'),
     url(r'^logout/$', views.deslogar, name='logout')
 
 

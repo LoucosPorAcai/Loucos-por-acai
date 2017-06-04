@@ -27,7 +27,7 @@ class Estoque(models.Model):
     nome = models.CharField(max_length=100)
     marca = models.CharField(max_length=100)
     preco = models.FloatField()  # This field type is a guess.
-    quant_produtos = models.CharField(max_length=45)
+    quant_produtos = models.IntegerField()
     minimo = models.IntegerField()
     pontos = models.IntegerField(blank=True, null=True)
 

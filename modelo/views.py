@@ -160,54 +160,43 @@ def delete_estoque(request,id):
 def new_cliente(request):
     if not request.user.has_perm('global_permissions.acessar_funcionario'):
         raise PermissionDenied
-    data = {}
     if request.method == "POST":
 
-        cliform = ClienteForm(request.POST)
-        usrform = UsuarioForm(request.POST)
-        cartaoform = CartaoForm(request.POST)
-        endform = EnderecoForm(request.POST)
-        telform = TelefoneForm(request.POST)
-        userform = UserCreationForm(request.POST)
-        if telform.is_valid() and cartaoform.is_valid()and endform.is_valid() and all(userform.is_valid() for user in userform) and all(
-                [usrform.is_valid() for usr in usrform]) and all([cliform.is_valid() for cli in cliform]):
+        cpf = request.POST.get('cpf_cliente')
+        nome = request.POST.get('nome_cliente')
+        snome = request.POST.get('sobrenome_cliente')
+        email = request.POST.get('email_cliente')
+        rua = request.POST.get('rua_cliente')
+        numero = request.POST.get('numero_cliente')
+        comp = request.POST.get('comp_cliente')
+        bairro = request.POST.get('bairro_cliente')
+        cep = request.POST.get('cep_cliente')
+        cidade = request.POST.get('cidade_cliente')
+        ddd1 = request.POST.get('ddd_cliente')
+        telefone1 = request.POST.get('tel_cliente')
+        ddd2 = request.POST.get('ddd2_cliente')
+        telefone2 = request.POST.get('tel2_cliente')
+        login = request.POST.get('login_cliente')
+        senha = request.POST.get('senha_cliente')
 
-            new_telefone = telform.save()
-            new_cartao = cartaoform.save()
-            new_end = endform.save()
-            for user in userform:
-                new_user_auth = userform.save(commit=False)
-                gcliente = Group.objects.get(name='cliente')
-                new_user_auth.save()
-                new_user_auth.groups.add(gcliente)
-                for usr in usrform:
-                    new_user = usrform.save(commit=False)
-                    new_user.telefone = new_telefone
-                    new_user.endereco = new_end
-                    new_user.user = new_user_auth
-                    new_user.save()
-                    for cli in cliform:
-                        new_cli = cliform.save(commit=False)
-                        new_cli.cartao = new_cartao
-                        new_cli.usuario = new_user
-                        new_cli.save()
-                    return HttpResponseRedirect('/funcionario/consulta_cliente/')
+        obj_telefone = Telefone.objects.create(ddd1 = ddd1, numero1 = telefone1, ddd2 = ddd2, numero2 = telefone2)
+        obj_endereco = Endereco.objects.create(rua = rua, numero_casa = numero, complemento = comp, bairro = bairro, cep = cep, cidade = cidade)
+        obj_user = User.objects.create_user(username = login, password = senha)
+        gcliente = Group.objects.get(name='cliente')
+        obj_user.groups.add(gcliente)
+        obj_usuario = Usuario.objects.create(nome = nome, sobrenome = snome, email= email, cpf = cpf, endereco = obj_endereco, telefone = obj_telefone, user = obj_user )
+        obj_telefone.save()
+        obj_endereco.save()
+        obj_user.save()
+        obj_usuario.save()
+        obj_cartao = Cartao.objects.create(quant_pontos = 0)
+        obj_cartao.save()
+        obj_cliente = Cliente.objects.create(usuario = obj_usuario, cartao = obj_cartao)
+        obj_cliente.save()
+
+        return HttpResponseRedirect('/funcionario/consulta_cliente/')
     else:
-        cliform = ClienteForm()
-        usrform = UsuarioForm()
-        cartaoform = CartaoForm()
-        endform = EnderecoForm()
-        telform = TelefoneForm()
-        userform = UserCreationForm()
-
-    data['clientes'] = cliform
-    data['usuarios'] = usrform
-    data['cartoes'] = cartaoform
-    data['enderecos'] = endform
-    data['telefones'] = telform
-    data['user'] = userform
-
-    return render(request, 'view/CadF.html', data)
+        return render(request, 'view/CadF.html')
 
 @login_required(login_url='/login/')
 def consultar_cliente(request):
@@ -223,56 +212,55 @@ def consultar_cliente(request):
 def editar_cliente_funcionario(request,id):
     if not request.user.has_perm('global_permissions.acessar_funcionario'):
         raise PermissionDenied
+
     data = {}
     cliente = Cliente.objects.get(pk=id)
     usuario = cliente.usuario
+    telefone = usuario.telefone
+    endereco = usuario.endereco
 
     if request.method == "POST":
 
-        cliform = ClienteForm(request.POST, instance=cliente)
-        usrform = UsuarioForm(request.POST, instance=usuario)
-        cartaoform = CartaoForm(request.POST, instance=cliente.cartao)
-        endform = EnderecoForm(request.POST, instance=usuario.endereco)
-        telform = TelefoneForm(request.POST, instance=usuario.telefone)
-        userform = UserCreationForm(request.POST, instance=usuario.user)
+        usuario.cpf = request.POST.get('cpf_cliente')
+        usuario.nome = request.POST.get('nome_cliente')
+        usuario.sobrenome = request.POST.get('sobrenome_cliente')
+        usuario.email = request.POST.get('email_cliente')
+        endereco.rua = request.POST.get('rua_cliente')
+        endereco.numero_casa = request.POST.get('numero_cliente')
+        endereco.complemento= request.POST.get('comp_cliente')
+        endereco.bairro = request.POST.get('bairro_cliente')
+        endereco.cep = request.POST.get('cep_cliente')
+        endereco.cidade = request.POST.get('cidade_cliente')
+        telefone.ddd1 = request.POST.get('ddd_cliente')
+        telefone.numero1 = request.POST.get('tel_cliente')
+        telefone.ddd2 = request.POST.get('ddd2_cliente')
+        telefone.numero2 = request.POST.get('tel2_cliente')
 
-        if telform.is_valid() and cartaoform.is_valid() and userform.is_valid() and endform.is_valid() and all(
-                [usrform.is_valid() for usr in usrform]) and all([cliform.is_valid() for cli in cliform]):
+        telefone.save()
+        endereco.save()
+        usuario.save()
+        cliente.save()
 
-            new_telefone = telform.save()
-            new_cartao = cartaoform.save()
-            new_end = endform.save()
-            new_user_auth = userform.save()
-
-            for usr in usrform:
-                new_user = usrform.save(commit=False)
-                new_user.telefone = new_telefone
-                new_user.endereco = new_end
-                new_user.user = new_user_auth
-                new_user.save()
-                for cli in cliform:
-                    new_cli = cliform.save(commit=False)
-                    new_cli.cartao = new_cartao
-                    new_cli.usuario = new_user
-                    new_cli.save()
-                return HttpResponseRedirect('/funcionario/consulta_cliente/')
+        return HttpResponseRedirect('/funcionario/consulta_cliente/')
 
     else:
-        cliform = ClienteForm(instance=cliente)
-        usrform = UsuarioForm(instance=usuario)
-        cartaoform = CartaoForm(instance=cliente.cartao)
-        endform = EnderecoForm(instance=usuario.endereco)
-        telform = TelefoneForm(instance=usuario.telefone)
-        userform = UserCreationForm(instance=usuario.user)
+        data['id'] = id
+        data['cpf'] = usuario.cpf
+        data['nome'] = usuario.nome
+        data['snome'] = usuario.sobrenome
+        data['email'] = usuario.email
+        data['rua'] = endereco.rua
+        data['numero'] = endereco.numero_casa
+        data['comp'] = endereco.complemento
+        data['bairro'] = endereco.bairro
+        data['cep'] = endereco.cep
+        data['cidade'] = endereco.cidade
+        data['ddd1'] = telefone.ddd1
+        data['telefone1'] = telefone.numero1
+        data['ddd2'] = telefone.ddd2
+        data['telefone2'] = telefone.numero2
 
-    data['clientes'] = cliform
-    data['usuarios'] = usrform
-    data['cartoes'] = cartaoform
-    data['enderecos'] = endform
-    data['telefones'] = telform
-    data['user'] = userform
-
-    return render(request, 'view/editeEdicaoF.html', data)
+        return render(request, 'view/editeEdicaoF.html', data)
 
 @login_required(login_url='/login/')
 def excluir_cliente(request, id):
@@ -461,10 +449,10 @@ def editar_funcionario_gerente(request, id):
     return render(request, 'view/editeEdicaoG.html', data)
 
 @login_required(login_url='/login/')
-def excluir_funcionario_gerente(request, id):
+def excluir_funcionario_gerente(request, pk):
     if not request.user.has_perm('global_permissions.acessar_gerente'):
         raise PermissionDenied
-    funcionario = Funcionario.objects.get(pk=id)
+    funcionario = Funcionario.objects.get(pk=pk)
     usuario = funcionario.usuario
     tipo = funcionario.tipo_funcionario
     situacao = funcionario.situacao
@@ -507,36 +495,48 @@ def edita_estoque(request,pk):
     if not request.user.has_perm('global_permissions.acessar_gerente'):
         raise PermissionDenied
     data = {}
-    estoque = get_object_or_404(Estoque, pk=pk)
+    estoque = Estoque.objects.get(pk=pk)
 
     if request.method == "POST":
-        form = EstoqueForm(request.POST, instance=estoque)
 
-        if form.is_valid():
-            form.save()
+        estoque.nome = request.POST.get('nome_estoque')
+        estoque.quant_produtos = request.POST.get('quantidade_estoque')
+        estoque.marca = request.POST.get('marca_estoque')
+        estoque.preco = request.POST.get('preco_estoque')
+        estoque.minimo = request.POST.get('limite_estoque')
+        estoque.pontos = request.POST.get('ponto_estoque')
+        estoque.save()
+
         return HttpResponseRedirect('/gerente/consulta_estoque/')
-    else:
-        form = EstoqueForm(instance=estoque)
 
-    data['form'] = form
-    return render(request, 'view/editeEdicaoE.html', data)
+    else:
+        data['pk'] = pk
+        data['nome'] = estoque.nome
+        data['quantidade'] = estoque.quant_produtos
+        data['marca'] = estoque.marca
+        data['preco'] = estoque.preco
+        data['minimo'] = estoque.minimo
+        data['pontos'] = estoque.pontos
+
+        return render(request, 'view/editeEdicaoE.html', data)
 
 @login_required(login_url='/login/')
 def new_estoque(request):
     if not request.user.has_perm('global_permissions.acessar_gerente'):
         raise PermissionDenied
-    data = {}
 
     if request.method == "POST":
-        form = EstoqueForm(request.POST)
 
-        if form.is_valid():
-            form.save()
+        nome = request.POST.get('nome_estoque')
+        quant = request.POST.get('quantidade_estoque')
+        marca = request.POST.get('marca_estoque')
+        preco = request.POST.get('preco_estoque')
+        minimo = request.POST.get('limite_estoque')
+        pontos = request.POST.get('ponto_estoque')
+
+        obj_estoque = Estoque.objects.create(nome = nome, marca = marca, preco = preco,quant_produtos = quant, minimo = minimo, pontos = pontos )
+        obj_estoque.save()
         return HttpResponseRedirect('/gerente/consulta_estoque/')
+
     else:
-        form = EstoqueForm()
-
-    data['form'] = form
-
-    return render(request, 'view/cadE.html', data)
-
+        return render(request, 'view/cadE.html')
