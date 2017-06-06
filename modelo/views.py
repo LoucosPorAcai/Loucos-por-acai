@@ -168,16 +168,18 @@ def new_cliente(request):
         email = request.POST.get('email_cliente')
         rua = request.POST.get('rua_cliente')
         numero = request.POST.get('numero_cliente')
-        comp = request.POST.get('comp_cliente')
+        comp = request.POST.get('comp_cliente',False)
         bairro = request.POST.get('bairro_cliente')
         cep = request.POST.get('cep_cliente')
         cidade = request.POST.get('cidade_cliente')
         ddd1 = request.POST.get('ddd_cliente')
         telefone1 = request.POST.get('tel_cliente')
-        ddd2 = request.POST.get('ddd2_cliente')
-        telefone2 = request.POST.get('tel2_cliente')
+        ddd2 = request.POST.get('ddd2_cliente', False)
+        telefone2 = request.POST.get('tel2_cliente', False)
         login = request.POST.get('login_cliente')
         senha = request.POST.get('senha_cliente')
+
+    
 
         obj_telefone = Telefone.objects.create(ddd1 = ddd1, numero1 = telefone1, ddd2 = ddd2, numero2 = telefone2)
         obj_endereco = Endereco.objects.create(rua = rua, numero_casa = numero, complemento = comp, bairro = bairro, cep = cep, cidade = cidade)
@@ -532,10 +534,17 @@ def new_estoque(request):
         marca = request.POST.get('marca_estoque')
         preco = request.POST.get('preco_estoque')
         minimo = request.POST.get('limite_estoque')
-        pontos = request.POST.get('ponto_estoque')
+        pontos = request.POST.get('ponto_estoque', False)
 
-        obj_estoque = Estoque.objects.create(nome = nome, marca = marca, preco = preco,quant_produtos = quant, minimo = minimo, pontos = pontos )
+        if pontos:
+            obj_estoque = Estoque.objects.create(nome=nome, marca=marca, preco=preco, quant_produtos=quant,minimo=minimo,pontos=pontos)
+
+        else:
+
+            obj_estoque = Estoque.objects.create(nome=nome, marca=marca, preco=preco, quant_produtos=quant, minimo=minimo)
+
         obj_estoque.save()
+
         return HttpResponseRedirect('/gerente/consulta_estoque/')
 
     else:
