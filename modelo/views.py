@@ -124,29 +124,61 @@ def vendas_funcionario(request):
     if not request.user.has_perm('global_permissions.acessar_funcionario'):
         raise PermissionDenied
     if request.method == 'POST':
+
         cpf = request.POST.get('CPF')
         try:
             usuario = getUsuarioByCpf(cpf)
+
             if usuario.isCliente():
-                telefone = usuario.telefone
-                endereco = usuario.endereco
-                data['cpf'] = usuario.cpf
-                data['nome'] = usuario.nome
-                data['ddd1'] = telefone.ddd1
-                data['numero1'] = telefone.numero1
-                data['rua'] = endereco.rua
-                data['numero'] = endereco.numero_casa
-                data['complemento'] = endereco.complemento
-                data['bairro'] = endereco.bairro
-                data['cidade'] = endereco.cidade
+                cliente = Cliente.objects.get(usuario = usuario)
+                funcionario = getFuncionarioByUser(request.user)
+                atendimento = Atendimento.objects.create(cliente = cliente, funcionario = funcionario)
+                carrinho = Carrinho.objects.create(atendimento = atendimento)
+                carrinho.save()
+
+                data['cliente'] = cliente
+                data['atendimento'] = atendimento
+                data['estoques'] = Estoque.objects.all()
+
                 return render(request, 'view/venda.html', data)
             else:
                 return HttpResponse("Usuário não é cliente")
-
         except Usuario.DoesNotExist:
             return HttpResponse("Usuário não existe")
     else:
         return render(request, 'view/venda.html')
+
+def lista_itens(request, cliente, atendimento, estoque=None):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
+    data = {}
+
+    atendimento = Atendimento.objects.get(id=atendimento)
+    cliente = Cliente.objects.get(id=cliente)
+    carrinho = None
+    query_estoque = request.POST.get('codigo')
+
+    if query_estoque:
+        estoque = Estoque.objects.filter(nome__contains = query_estoque)
+        data['estoques'] = estoque
+
+    else:
+        carrinho = Carrinho.objects.get(atendimento=atendimento)
+        estoque = getProdutoById(estoque)
+        carrinho.estoque.add(estoque)
+        carrinho.somarValores(estoque)
+        data['estoques'] = Estoque.objects.all()
+        carrinho.save()
+
+
+    data['cliente'] = cliente
+    data['atendimento'] = atendimento
+    data['carrinho'] = carrinho
+    data['valor'] = carrinho.valor_Total
+
+    return render(request,'view/venda.html', data)
+
+
 
 @login_required(login_url='/login/')
 def delete_estoque(request,id):
@@ -179,7 +211,6 @@ def new_cliente(request):
         login = request.POST.get('login_cliente')
         senha = request.POST.get('senha_cliente')
 
-    
 
         obj_telefone = Telefone.objects.create(ddd1 = ddd1, numero1 = telefone1, ddd2 = ddd2, numero2 = telefone2)
         obj_endereco = Endereco.objects.create(rua = rua, numero_casa = numero, complemento = comp, bairro = bairro, cep = cep, cidade = cidade)

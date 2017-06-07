@@ -21,6 +21,8 @@ urlpatterns = [
     url(r'^funcionario/sobre/$', views.sobre_funcionario, name='sobreNosFunc'),
     url(r'^funcionario/contato/$',views.contato_funcionario, name='contatoFunc'),
     url(r'^funcionario/venda/$', views.vendas_funcionario, name='vendas'),
+    url(r'^funcionario/venda/cliente=(?P<cliente>[0-9]+)atendimento=(?P<atendimento>[0-9]+)$', views.lista_itens, name='lista_itens'),
+    url(r'^funcionario/venda/cliente=(?P<cliente>[0-9]+)atendimento=(?P<atendimento>[0-9]+)prod=(?P<estoque>[0-9]+)$', views.lista_itens, name='lista_itens_estoque'),
     url(r'^funcionario/cadastro_cliente/$', views.new_cliente, name='cadastroFunc'),
     url(r'^funcionario/consulta_cliente/$', views.consultar_cliente, name='consultaC'),
     url(r'^funcionario/consulta_cliente/editar_cliente/(?P<id>[0-9]+)/$', views.editar_cliente_funcionario, name='editeEdicaoFunc'),
@@ -39,7 +41,7 @@ urlpatterns = [
     url(r'^gerente/consulta_estoque/$', views.consulta_estoque, name='consulta_estoque'),
     url(r'^gerente/consulta_estoque/edicao/(?P<pk>[0-9]+)$', views.edita_estoque, name='edita_estoque'),
     url(r'^gerente/consulta_estoque/deletar/(?P<pk>[0-9]+)/$', views.delete_estoque, name='delete_estoque'),
-    url(r'^logout/$', views.deslogar, name='logout')
-
-
+    url(r'^logout/$', views.deslogar, name='logout'),
 ]
+
+

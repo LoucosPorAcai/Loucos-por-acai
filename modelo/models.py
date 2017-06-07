@@ -158,9 +158,6 @@ class Funcionario (models.Model):
 class Atendimento(models.Model):
 
     id = models.AutoField(primary_key=True)
-    tipo_entrega = models.CharField(max_length=45)
-    data = models.DateField('Data do Atendimento')
-    hora = models.CharField(max_length=45)
 
     funcionario = models.ForeignKey(Funcionario, blank=True, null=False)
     cliente = models.ForeignKey(Cliente, blank=True, null=False)
@@ -171,11 +168,20 @@ class Atendimento(models.Model):
 
 class Carrinho(models.Model):
 
-    estoque = models.ForeignKey(Estoque, blank=True, null=False)
+    estoque = models.ManyToManyField(Estoque, blank=True)
     atendimento = models.ForeignKey(Atendimento,blank=True, null=False)
+    valor_Total = models.FloatField(default=0)
 
     class Meta:
         db_table = 'modelo_carrinho'
+
+
+    def somarValores(self, estoque):
+
+        self.valor_Total += estoque.preco
+
+
+
 
 
 class Trocapontos(models.Model):
@@ -197,3 +203,12 @@ class Trocapontos(models.Model):
 def getUsuarioByCpf(cpf):
     usuario = Usuario.objects.get(cpf=cpf)
     return usuario
+
+def getProdutoById(id):
+    return Estoque.objects.get(id=id)
+
+def getFuncionarioByUser(user):
+    usuario = Usuario.objects.get(user = user)
+    funcionario = Funcionario.objects.get(usuario = usuario)
+    return funcionario
+
