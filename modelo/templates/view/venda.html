@@ -123,15 +123,12 @@
 						    </div>
 						  </div>
 						</form>
-						
 						<div style=" height: 400px; overflow: auto;">   
 							<ul class="list-group">
-								
 								{% for estoque in estoques.all %}
 							  <a href="{% url 'lista_itens_estoque' cliente=cliente.id atendimento=atendimento.id estoque=estoque.id %}"><li class="list-group-item">{{estoque.id}} - {{estoque.nome}} R$ {{estoque.preco}}</li></a>
 								{% endfor %}
 							</ul>
-
 						</div>
 						</div>							
 					</div>
@@ -141,22 +138,23 @@
 							<div class="linha3"></div>
 							<div style=" height: 400px; overflow: auto;">   
 							<ul class="list-group">
-			
+								
 								{%if carrinho is not None %}
 									{% for estoque in carrinho.estoque.all %}
-										<li class="list-group-item">{{estoque.id}} - {{estoque.nome}} R$ {{estoque.preco}}</li>
+										<li class="list-group-item">{{estoque.id}} - {{estoque.quant_produtos}}x {{estoque.nome}} R$ {{estoque.preco}}</li>
 									{% endfor %}
-								{% endif %}	
 							</ul>
-
 						</div>
 						</div>	
 					</div>
+					<p>Total:{{valor}}</p>
 				</div>
-				<p>Total:{{valor}}</p>
-
-				<button type="submit" class="btn meu2">Finalizar Compra</button>
+				<form action="{% url 'finalizar_compra' cliente=cliente.id atendimento=atendimento.id %}" method="POST">
+					{% csrf_token %}
+					<button type="submit" class="btn meu2">Finalizar Compra</button>
+				</form>
 			</div>
+			{% endif %}	
 			{% endif %}
 		</section>
 		<footer class="row cor">

@@ -10,6 +10,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
+from datetime import date
 TIPO_CHOICES = (
     ('F', 'Funcionario'),
     ('G', 'Gerente'),
@@ -27,7 +28,7 @@ class Estoque(models.Model):
     nome = models.CharField(max_length=100)
     marca = models.CharField(max_length=100)
     preco = models.FloatField()  # This field type is a guess.
-    quant_produtos = models.IntegerField()
+    quant_produtos = models.IntegerField(null=True)
     minimo = models.IntegerField()
     pontos = models.IntegerField(blank=True, null=True)
 
@@ -155,34 +156,24 @@ class Funcionario (models.Model):
         db_table = 'modelo_funcionario'
 
 
-class Atendimento(models.Model):
-
-    id = models.AutoField(primary_key=True)
-
-    funcionario = models.ForeignKey(Funcionario, blank=True, null=False)
-    cliente = models.ForeignKey(Cliente, blank=True, null=False)
-
-    class Meta:
-        db_table = 'modelo_atendimento'
-
-
 class Carrinho(models.Model):
 
-    estoque = models.ManyToManyField(Estoque, blank=True)
-    atendimento = models.ForeignKey(Atendimento,blank=True, null=False)
+    estoque = models.ManyToManyField(Estoque, blank=True, null=True)
     valor_Total = models.FloatField(default=0)
 
     class Meta:
         db_table = 'modelo_carrinho'
 
+class Atendimento(models.Model):
 
-    def somarValores(self, estoque):
+    id = models.AutoField(primary_key=True)
+    data_compra = models.DateField(default=date.today)
+    funcionario = models.ForeignKey(Funcionario, blank=True, null=False)
+    cliente = models.ForeignKey(Cliente, blank=True, null=False)
+    carrinho = models.ForeignKey(Carrinho,blank=True, null=True)
 
-        self.valor_Total += estoque.preco
-
-
-
-
+    class Meta:
+        db_table = 'modelo_atendimento'
 
 class Trocapontos(models.Model):
 
@@ -212,3 +203,7 @@ def getFuncionarioByUser(user):
     funcionario = Funcionario.objects.get(usuario = usuario)
     return funcionario
 
+def getClienteByUser(user):
+    usuario = Usuario.objects.get(user=user)
+    cliente = Cliente.objects.get(usuario=usuario)
+    return cliente

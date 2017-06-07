@@ -65,12 +65,12 @@
 				<div class="tab-content">
 				  <div id="home" class="tab-pane fade in active">
 				    <img class="img-responsive centralizar tama" src="{% static 'imagens/icon.png'%}">
-				  	<h3>Gilberto Viana Lima Filho</h3>
-				  	<h3>000.000.000.00</h3>
-				  	<h3>Rua monaco 215 - bloco 03 apt 202</h3>
-				  	<h3>(85) 9 9793-5406</h3>
+				  	<h3>{{cliente.usuario.nome}}</h3>
+				  	<h3>{{cliente.usuario.cpf}}</h3>
+				  	<h3>Rua {{cliente.usuario.endereco.rua}}, {{cliente.usuario.endereco.numero_casa}} {{cliente.usuario.endereco.complemento}} - {{cliente.usuario.endereco.bairro}}, {{cliente.usuario.endereco.cidade}}</h3>
+				  	<h3>({{cliente.usuario.telefone.ddd1}}) {{cliente.usuario.telefone.numero1}}</h3>
 				  	<div class="well raro">
-				  		<h2>60 Pontos</h2>
+				  		<h2>{{cliente.cartao.quant_pontos}} Pontos</h2>
 			  	</div>
 				  </div>
 				  

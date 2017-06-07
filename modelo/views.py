@@ -8,6 +8,7 @@ from django.contrib.auth import login,authenticate,logout
 from django.contrib.auth.models import Group
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import *
+from datetime import datetime
 from .forms import *
 from .models import *
 
@@ -84,7 +85,10 @@ def contato_cliente(request):
 def perfil_cliente(request):
     if not request.user.has_perm('global_permissions.acessar_cliente'):
         raise PermissionDenied
-    return render(request, 'view/perfil.html')
+    data={}
+    data['cliente'] = getClienteByUser(request.user)
+
+    return render(request, 'view/perfil.html',data)
 
 @login_required(login_url='/login/')
 def editar_cliente(request):
@@ -120,7 +124,6 @@ def contato_funcionario(request):
 @login_required(login_url='/login/')
 def vendas_funcionario(request):
     data={}
-
     if not request.user.has_perm('global_permissions.acessar_funcionario'):
         raise PermissionDenied
     if request.method == 'POST':
@@ -132,9 +135,8 @@ def vendas_funcionario(request):
             if usuario.isCliente():
                 cliente = Cliente.objects.get(usuario = usuario)
                 funcionario = getFuncionarioByUser(request.user)
-                atendimento = Atendimento.objects.create(cliente = cliente, funcionario = funcionario)
-                carrinho = Carrinho.objects.create(atendimento = atendimento)
-                carrinho.save()
+                carrinho = Carrinho.objects.create(valor_Total = 0)
+                atendimento = Atendimento.objects.create(cliente = cliente, funcionario = funcionario,carrinho = carrinho)
 
                 data['cliente'] = cliente
                 data['atendimento'] = atendimento
@@ -148,6 +150,7 @@ def vendas_funcionario(request):
     else:
         return render(request, 'view/venda.html')
 
+@login_required(login_url='/login/')
 def lista_itens(request, cliente, atendimento, estoque=None):
     if not request.user.has_perm('global_permissions.acessar_funcionario'):
         raise PermissionDenied
@@ -159,17 +162,19 @@ def lista_itens(request, cliente, atendimento, estoque=None):
     query_estoque = request.POST.get('codigo')
 
     if query_estoque:
+
         estoque = Estoque.objects.filter(nome__contains = query_estoque)
         data['estoques'] = estoque
 
     else:
-        carrinho = Carrinho.objects.get(atendimento=atendimento)
-        estoque = getProdutoById(estoque)
+        nestoque = getProdutoById(estoque)
+        nestoque.quant_produtos += 1
+        nestoque.save()
+        carrinho = atendimento.carrinho
         carrinho.estoque.add(estoque)
-        carrinho.somarValores(estoque)
-        data['estoques'] = Estoque.objects.all()
+        carrinho.valor_Total += estoque.preco
         carrinho.save()
-
+        data['estoques'] = Estoque.objects.all()
 
     data['cliente'] = cliente
     data['atendimento'] = atendimento
@@ -178,7 +183,23 @@ def lista_itens(request, cliente, atendimento, estoque=None):
 
     return render(request,'view/venda.html', data)
 
+@login_required(login_url='/login/')
 
+def finalizar_compra(request,cliente,atendimento):
+    if not request.user.has_perm('global_permissions.acessar_funcionario'):
+        raise PermissionDenied
+    atendimento = Atendimento.objects.get(id=atendimento)
+    cliente = Cliente.objects.get(id=cliente)
+
+    if atendimento.carrinho.valor_Total >= 7.00:
+        for estoque in atendimento.carrinho.estoque.all():
+            cliente.cartao.quant_pontos += estoque.pontos
+            cliente.save()
+    for estoque in Estoque.objects.all():
+        estoque.quant_produtos = 0
+
+    atendimento.save()
+    return HttpResponse('Compra finalizada com sucesso!')
 
 @login_required(login_url='/login/')
 def delete_estoque(request,id):
@@ -507,7 +528,17 @@ def excluir_funcionario_gerente(request, pk):
 def consultar_historico(request):
     if not request.user.has_perm('global_permissions.acessar_gerente'):
         raise PermissionDenied
-    return render(request, 'view/consultarH.html')
+    data={}
+
+    atendimento = Atendimento.objects.all()
+    cliente = Cliente.objects.all()
+    funcionario = Funcionario.objects.all()
+
+    data['atendimentos'] = atendimento
+    data['clientes'] = cliente
+    data['funcionarios'] = funcionario
+
+    return render(request, 'view/consultarH.html',data)
 
 @login_required(login_url='/login/')
 def vendas_gerente(request):

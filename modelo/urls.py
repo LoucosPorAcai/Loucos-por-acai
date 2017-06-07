@@ -21,6 +21,7 @@ urlpatterns = [
     url(r'^funcionario/sobre/$', views.sobre_funcionario, name='sobreNosFunc'),
     url(r'^funcionario/contato/$',views.contato_funcionario, name='contatoFunc'),
     url(r'^funcionario/venda/$', views.vendas_funcionario, name='vendas'),
+    url(r'^funcionario/venda/cliente=(?P<cliente>[0-9]+)atendimento=(?P<atendimento>[0-9]+)$', views.finalizar_compra, name='finalizar_compra'),
     url(r'^funcionario/venda/cliente=(?P<cliente>[0-9]+)atendimento=(?P<atendimento>[0-9]+)$', views.lista_itens, name='lista_itens'),
     url(r'^funcionario/venda/cliente=(?P<cliente>[0-9]+)atendimento=(?P<atendimento>[0-9]+)prod=(?P<estoque>[0-9]+)$', views.lista_itens, name='lista_itens_estoque'),
     url(r'^funcionario/cadastro_cliente/$', views.new_cliente, name='cadastroFunc'),
