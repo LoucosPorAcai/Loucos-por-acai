@@ -48,7 +48,9 @@ def logar(request):
                     elif group.name == 'gerente':
                         return HttpResponseRedirect('/gerente/')
         else:
-            return HttpResponse('usuário não encontrado')
+            data={}
+            data['userIsNone'] = True
+            return render(request, 'view/login.html', data)
     else:
         return render(request, 'view/login.html')
 
@@ -127,11 +129,9 @@ def vendas_funcionario(request):
     if not request.user.has_perm('global_permissions.acessar_funcionario'):
         raise PermissionDenied
     if request.method == 'POST':
-
         cpf = request.POST.get('CPF')
         try:
             usuario = getUsuarioByCpf(cpf)
-
             if usuario.isCliente():
                 cliente = Cliente.objects.get(usuario = usuario)
                 funcionario = getFuncionarioByUser(request.user)
@@ -144,9 +144,12 @@ def vendas_funcionario(request):
 
                 return render(request, 'view/venda.html', data)
             else:
-                return HttpResponse("Usuário não é cliente")
+                data['notIsCliente'] = True
+                return render(request, 'view/venda.html', data)
+
         except Usuario.DoesNotExist:
-            return HttpResponse("Usuário não existe")
+            data['userIsNone'] = True
+            return render(request, 'view/venda.html', data)
     else:
         return render(request, 'view/venda.html')
 

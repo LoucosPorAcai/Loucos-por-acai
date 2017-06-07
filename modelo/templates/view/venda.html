@@ -69,11 +69,14 @@
 				    </div>
 				  </div>
 				</form>
+				{% if userIsNone %}
 				<div id="alerta2" class="alert alert-danger" style="text-align: center;">
-    					<strong>Usuário não encontrado!</strong> Entre com um usuário valido</div>
-
+    				<strong>Usuário não encontrado!</strong> Entre com um usuário valido</div>
+						{% endif %}
+							{%if notIsCliente %}
     					<div id="alerta3" class="alert alert-danger" style="text-align: center;">
     					<strong>Usuário Incorreto!</strong> O usuário, não é um cliente</div>
+							{% endif %}
 				<div class="row">
 					<div class="col-lg-6">
 						<div class="form-group">
