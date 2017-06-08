@@ -1,3 +1,4 @@
+@media screen and (min-width: 1000px) {
 .cor{
 	background-image: linear-gradient(to top, #9933ff,  #1a1a1a 50%, #400080);
 
@@ -152,9 +153,9 @@ h2{
 }
 
 .direita{
-	margin-left: 80%;
+	margin-right: 20%;
+	margin-top: 10%;
 }
-
 .dim{
 	width: 70%;
 	margin-left: 25%;
@@ -406,3 +407,1135 @@ h3{
 	margin-top: 5%;
 	margin-bottom: 5%;
 }
+}
+@media screen and (min-width: 20px) {
+		.mudar{
+			margin-right: 25%;
+			margin-left: 50%;
+
+		}
+		.mud{
+			width: 100px;
+			height: 20px;
+			margin: 0 auto;
+			margin-top: 10%;
+
+		}
+		body{
+			background-color: blue;
+		}
+
+		.meior{
+			margin-right: 22%;
+		}
+		.dimm{
+			width: 10%;
+			height: 10%;
+			float: right;
+		}
+		
+		.linha{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 80px;
+			margin-right: 80px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 200%;
+			height: 200%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 10px;
+		}
+		.vamola{
+			font-size: 10px;
+			margin-left: 35%;
+		}
+		
+		.lin{
+			height: 1px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 230px;
+			margin-right: 230px;
+			background-color: #cccccc;
+		}
+		.letra{
+			text-align: center;
+			font-size: 15px;
+			margin-left: -8%;
+			margin-top: -10%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 15px;
+			margin-top: 5%;
+			margin-left:5%;
+		}
+		.frame{
+			
+			width: -500px;
+			height: -500px; 
+		}
+
+		.seta2{
+		margin-left: 70%;
+	}
+
+
+.mud4{
+	width: 60px;
+	height: 60px;
+	margin: 0 auto;
+	margin-top: 25%;
+}
+
+.seta{
+	width: 20px;
+	height: 20px;
+	margin-top: 18%;
+
+}
+
+.direita{
+	margin-left: 60%;
+}
+	}
+
+
+
+@media screen and (min-width: 1200px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 140px;
+			height: 30px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: #a58964;
+		}
+
+		.linha{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 120px;
+			margin-right: 120px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 15px;
+		}
+		.vamola{
+			font-size: 15px;
+			margin-left: 16%
+		}
+
+		.vamola2{
+			font-size: 40px;
+		}
+		.crescer{
+			width: 800px;
+
+		}
+		.tras{
+			margin-left: 14%;
+		}
+
+
+		.lin{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 230px;
+			margin-right: 230px;
+			background-color: #cccccc;
+		}
+		.letra{
+			font-size: 20px;
+			margin-left: -50%;
+			margin-top: 10%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 20px;
+			margin-top: 5%;
+			margin-left: 30%;
+		}
+		.frame{
+			width: 500px;
+			height: 300px; 
+			margin-left: -2%;
+		}
+		.mud4{
+			width: 60px;
+			height: 60px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 20px;
+		height: 20px;
+		margin-top: 42%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		
+		margin-left: -30%;
+	}
+		}
+
+@media screen and (min-width: 1400px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 160px;
+			height: 30px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: #c5c5c9;
+		}
+
+		.linha{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 120px;
+			margin-right: 120px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 15px;
+		}
+		.vamola{
+			font-size: 15px;
+			margin-left: 20%
+		}
+
+		.vamola2{
+			font-size: 40px;
+		}
+		.crescer{
+			width: 800px;
+
+		}
+		.tras{
+			margin-left: 14%;
+		}
+
+
+		.lin{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 230px;
+			margin-right: 230px;
+			background-color: #cccccc;
+		}
+		.letra{
+			font-size: 20px;
+			margin-left: -50%;
+			margin-top: 10%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 20px;
+			margin-top: 5%;
+			margin-left: 30%;
+		}
+		.mud4{
+			width: 80px;
+			height: 80px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 20px;
+		height: 20px;
+		margin-top: 42%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		
+		margin-left: -30%;
+	}
+		}
+
+
+@media screen and (min-width: 1500px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 180px;
+			height: 40px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: pink;
+		}
+
+		.linha{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 150px;
+			margin-right: 150px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 20px;
+		}
+		.vamola{
+			font-size: 20px;
+			margin-left: 14%
+		}
+
+		.vamola2{
+			font-size: 40px;
+		}
+		.crescer{
+			width: 1000px;
+
+		}
+		.tras{
+			margin-left: 6%;
+		}
+
+
+		.lin{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 190px;
+			margin-right: 190px;
+			background-color: #cccccc;
+		}
+		.letra{
+			font-size: 20px;
+			margin-left: -50%;
+			margin-top: 10%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 20px;
+			margin-top: 5%;
+			margin-left: 30%;
+		}
+		.direita{
+			width: 30%;
+			height: 30%;
+		}
+		.seta{
+		width: 30px;
+		height: 30px;
+		margin-top: 42%;
+		margin-left: -30%;
+	}
+	.seta2{
+		margin-left: 60%;
+	}
+	
+	}
+
+
+@media screen and (min-width: 1700px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 200px;
+			height: 40px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: #cccccc;
+		}
+
+		.linha{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 150px;
+			margin-right: 150px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 20px;
+		}
+		.vamola{
+			font-size: 20px;
+			margin-left: 20%
+		}
+
+		.vamola2{
+			font-size: 40px;
+		}
+		.crescer{
+			width: 1000px;
+
+		}
+		.tras{
+			margin-left: 6%;
+		}
+
+
+		.lin{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 190px;
+			margin-right: 190px;
+			background-color: #cccccc;
+		}
+		.letra{
+			font-size: 20px;
+			margin-left: -50%;
+			margin-top: 10%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 20px;
+			margin-top: 5%;
+			margin-left: 30%;
+		}
+		.mud4{
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 30px;
+		height: 30px;
+		margin-top: 42%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		
+		margin-left: -30%;
+	}
+		}
+
+
+@media screen and (min-width: 2000px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 250px;
+			height: 60px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: blue;
+		}
+
+		.linha{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 180px;
+			margin-right: 180px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 20px;
+		}
+		.vamola{
+			font-size: 20px;
+			margin-left: 22%
+		}
+
+		.vamola2{
+			font-size: 40px;
+		}
+		.crescer{
+			width: 1000px;
+
+		}
+		.tras{
+			margin-left: 6%;
+		}
+
+
+		.lin{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 190px;
+			margin-right: 190px;
+			background-color: #cccccc;
+		}
+		.frame{
+			width: 800px;
+			height: 600px; 
+		}
+		.tes{
+		
+			margin-top: 15%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 30px;
+			margin-top: 5%;
+			margin-left: -20%;
+		}
+		.letra{
+			font-size: 30px;
+			margin-left: -85%;
+			margin-top: 15%;
+		}
+		.mud4{
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 30px;
+		height: 30px;
+		margin-top: 38%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		
+		margin-left: -30%;
+	}
+		}
+
+
+@media screen and (min-width: 2100px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 280px;
+			height: 70px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: magenta;
+		}
+
+		.linha{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 180px;
+			margin-right: 180px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 20px;
+		}
+		.vamola{
+			font-size: 20px;
+			margin-left: 25%
+		}
+
+		.vamola2{
+			font-size: 40px;
+		}
+		.crescer{
+			width: 1200px;
+
+		}
+		.tras{
+			margin-left: -5%;
+		}
+
+
+		.lin{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 120px;
+			margin-right: 120px;
+			background-color: #cccccc;
+		}
+		.frame{
+			width: 800px;
+			height: 600px; 
+		}
+		.tes{
+		
+			margin-top: 15%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 30px;
+			margin-top: 5%;
+			margin-left: -20%;
+		}
+		.letra{
+			font-size: 30px;
+			margin-left: -85%;
+			margin-top: 15%;
+		}
+		.mud4{
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 30px;
+		height: 30px;
+		margin-top: 38%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		
+		margin-left: -30%;
+	}
+		}
+
+@media screen and (min-width: 2400px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 280px;
+			height: 70px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: blue;
+		}
+
+		.linha{
+			height: 4px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 180px;
+			margin-right: 180px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 30px;
+		}
+		.vamola{
+			font-size: 30px;
+			margin-left: 17%
+		}
+
+		.vamola2{
+			font-size: 40px;
+		}
+		.crescer{
+			width: 1400px;
+
+		}
+
+		.tras{
+			margin-left:  -15%
+		}
+
+		.lin{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 120px;
+			margin-right: 120px;
+			background-color: #cccccc;
+		}
+		.frame{
+			width: 800px;
+			height: 600px; 
+		}
+		.tes{
+		
+			margin-top: 15%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 30px;
+			margin-top: 5%;
+			margin-left: -15%;
+		}
+		.letra{
+			font-size: 30px;
+			margin-left: -85%;
+			margin-top: 20%;
+		}
+		.mud4{
+			width: 100px;
+			height: 100px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 30px;
+		height: 30px;
+		margin-top: 32%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		
+		margin-left: -30%;
+	}
+		}
+
+@media screen and (min-width: 3000px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 300px;
+			height: 100px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: yellow;
+		}
+
+		.linha{
+			height: 4px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 300px;
+			margin-right: 300px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 30px;
+		}
+		.vamola{
+			font-size: 30px;
+			margin-left: 27%
+		}
+
+		.vamola2{
+			font-size: 50px;
+		}
+		.crescer{
+			width: 1800px;
+
+		}
+
+		.tras{
+			margin-left:  -30%
+		}
+
+		.lin{
+			height: 2px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 120px;
+			margin-right: 120px;
+			background-color: #cccccc;
+		}
+		.frame{
+			width: 1000px;
+			height: 600px; 
+		}
+		.tes{
+		
+			margin-top: 15%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 50px;
+			margin-top: 5%;
+			margin-left: -150%;
+		}
+		.letra{
+			font-size: 50px;
+			margin-left: -200%;
+			margin-top: 10%;
+		}
+		.mud4{
+			width: 140px;
+			height: 140px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 40px;
+		height: 40px;
+		margin-top: 32%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		
+		margin-left: -30%;
+	}
+		}
+
+@media screen and (min-width: 3600px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		.mud{
+			width: 600px;
+			height: 150px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		body{
+			background-color: green;
+		}
+
+		.linha{
+			height: 4px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 300px;
+			margin-right: 300px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 50px;
+		}
+		.vamola{
+			font-size: 50px;
+			margin-left: 23%
+		}
+
+		.vamola2{
+			font-size: 80px;
+		}
+		.crescer{
+			width: 3000px;
+
+		}
+
+		.tras{
+			margin-left:  -85%
+		}
+
+		.lin{
+			height: 5px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 120px;
+			margin-right: 120px;
+			background-color: #cccccc;
+		}
+		.borda3{
+			margin-left: -50%;
+			border: 1px solid #cccccc;
+			width: 200%;
+
+			margin-top: 10%;
+			margin-bottom: 10%;	
+			border-radius: 5px;
+			box-shadow: 5px 5px 10px 5px black;
+		}
+		.quem2{
+			font-size: 80px;
+		}
+
+		.ajeita{
+			text-align: justify;
+			margin-left: 5%;
+			margin-top: 5%;
+			font-size: 50px;
+		}
+		.ajeita2{
+			text-align: justify;
+			margin-left: 5%;
+			margin-top: 5%;
+			margin-bottom: 5%;
+			font-size: 50px;
+		}
+
+	.frame{
+			width: 1500px;
+			height: 1200px; 
+		}
+		.tes{
+		
+			margin-top: 15%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 80px;
+			margin-top: 5%;
+			margin-left: -150%;
+		}
+		.letra{
+			font-size: 80px;
+			margin-left: -180%;
+			margin-top: 40%;
+		}
+		.mud4{
+			width: 200px;
+			height: 200px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 80px;
+		height: 80px;
+		margin-top: 32%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		
+		margin-left: -30%;
+	}
+		}
+
+@media screen and (min-width: 5000px) {
+		.mudar{
+			margin: 0 auto;
+
+		}
+		body{
+			background-color: red;
+		}
+		.mud{
+			width: 800px;
+			height: 200px;
+			margin: 0 auto;
+			margin-top: 10%;
+		}
+		
+
+		.linha{
+			height: 5px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 500px;
+			margin-right: 500px;
+			background-color: #cccccc;
+		}
+
+		.tamanho2{
+			width: 500%;
+			height: 500%;
+			margin: 0 auto;
+		}
+		.ajuste{
+			text-align: center;
+			color: white;
+			font-size: 80px;
+		}
+		.vamola{
+			font-size: 80px;
+
+			margin-left: 20%
+		}
+		
+		.vamola2{
+			font-size: 80px;
+
+			
+		}
+		.crescer{
+			width: 3000px;
+
+		}
+
+		.tras{
+			margin-left:  -85%
+		}
+
+		.lin{
+			height: 5px;
+			margin-top: 10px;
+			margin-bottom: 10px;
+			margin-left: 120px;
+			margin-right: 120px;
+			background-color: #cccccc;
+		}
+		.borda3{
+			margin-left: -50%;
+			border: 1px solid #cccccc;
+			width: 200%;
+
+			margin-top: 10%;
+			margin-bottom: 10%;	
+			border-radius: 5px;
+			box-shadow: 5px 5px 10px 5px black;
+		}
+		.quem2{
+			font-size: 80px;
+		}
+
+		.ajeita{
+			text-align: justify;
+			margin-left: 5%;
+			margin-top: 5%;
+			font-size: 50px;
+		}
+		.ajeita2{
+			text-align: justify;
+			margin-left: 5%;
+			margin-top: 5%;
+			margin-bottom: 5%;
+			font-size: 50px;
+		}
+		.frame{
+			width: 1500px;
+			height: 1200px; 
+		}
+		.tes{
+		
+			margin-top: 15%;
+		}
+		.ajuste2{
+			text-align: center;
+			color: black;
+			font-size: 80px;
+			margin-top: 5%;
+			margin-left: -150%;
+		}
+		.letra{
+			font-size: 80px;
+			margin-left: -180%;
+			margin-top: 50%;
+		}
+		.mud4{
+			width: 250px;
+			height: 250px;
+			margin: 0 auto;
+			margin-top: 25%;
+		}
+		.seta{
+		width: 100px;
+		height: 100px;
+		margin-top: 32%;
+		margin-left: -30%;
+	}
+	.seta2{
+		width: 100px;
+		height: 100px;
+		margin-left: -30%;
+	}
+
+	}
+
+	
+
+
+	
+
+
