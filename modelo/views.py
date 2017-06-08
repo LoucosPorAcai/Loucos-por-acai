@@ -369,65 +369,58 @@ def new_funcionario(request):
     if not request.user.has_perm('global_permissions.acessar_gerente'):
         raise PermissionDenied
     data = {}
-
     if request.method == "POST":
-        funcform = FuncionarioForm(request.POST)
-        usrform = UsuarioForm(request.POST)
-        tpfuncform = TipofuncionarioForm(request.POST)
-        endform = EnderecoForm(request.POST)
-        sform = SituacaoForm(request.POST)
-        telform = TelefoneForm(request.POST)
-        userform = UserCreationForm(request.POST)
 
-        if telform.is_valid() and sform.is_valid() and endform.is_valid() and userform.is_valid() and tpfuncform.is_valid() and sform.is_valid() and all([usrform.is_valid() for usr in usrform]) and all([funcform.is_valid() for func in funcform]):
-            new_telefone = telform.save()
-            new_tipo = tpfuncform.save()
-            new_end = endform.save()
-            new_situacao = sform.save()
-            new_user_auth = userform.save()
+        cpf = request.POST.get('cpf_funcionario')
+        nome = request.POST.get('nome_funcionario')
+        snome = request.POST.get('sobrenome_funcionario')
+        email = request.POST.get('email_funcionario')
+        rua = request.POST.get('rua_funcionario')
+        numero = request.POST.get('numero_funcionario')
+        comp = request.POST.get('comp_funcionario', False)
+        bairro = request.POST.get('bairro_funcionario')
+        cep = request.POST.get('cep_funcionario')
+        cidade = request.POST.get('cidade_funcionario')
+        ddd1 = request.POST.get('ddd_funcionario')
+        telefone1 = request.POST.get('tel_funcionario')
+        ddd2 = request.POST.get('ddd2_funcionario', False)
+        telefone2 = request.POST.get('tel2_funcionario', False)
+        login = request.POST.get('login_funcionario')
+        senha = request.POST.get('senha_funcionario')
+        salario = request.POST.get('salario_funcionario')
+        periodo = request.POST.get('periodo_funcionario')
+        situacao = request.POST.get('situacao_funcionario')
+        tipo = request.POST.get('tipo_funcionario')
 
-            if new_situacao.descricao == 'A':
-                new_user_auth.is_active = True
-            else:
-                new_user_auth.is_active = False
+        obj_telefone = Telefone.objects.create(ddd1=ddd1, numero1=telefone1, ddd2=ddd2, numero2=telefone2)
+        obj_endereco = Endereco.objects.create(rua=rua, numero_casa=numero, complemento=comp, bairro=bairro, cep=cep,cidade=cidade)
+        obj_user = User.objects.create_user(username=login, password=senha)
 
-            if new_tipo.desc_tipo == 'F':
-                gfunc = Group.objects.get(name='funcionario')
-            else:
-                gfunc = Group.objects.get(name='gerente')
-            new_user_auth.groups.add(gfunc)
+        if tipo == "Funcionario":
+            gfuncionario = Group.objects.get(name='funcionario')
+            obj_user.groups.add(gfuncionario)
 
-            for usr in usrform:
-                new_user = usrform.save(commit=False)
-                new_user.telefone = new_telefone
-                new_user.endereco = new_end
-                new_user.user = new_user_auth
-                new_user.save()
-                for func in funcform:
-                    new_func = funcform.save(commit=False)
-                    new_func.situacao = new_situacao
-                    new_func.tipo_funcionario = new_tipo
-                    new_func.usuario = new_user
-                    new_func.save()
-                return HttpResponseRedirect('/gerente/consultar_funcionario/')
+        elif tipo == "Gerente":
+            ggerente = Group.objects.get(name='gerente')
+            obj_user.groups.add(ggerente)
+
+        obj_tipo = Tipofuncionario.objects.create(desc_tipo=tipo)
+        obj_situacao = Situacao.objects.create(descricao=situacao)
+        obj_usuario = Usuario.objects.create(nome=nome, sobrenome=snome, email=email, cpf=cpf, endereco=obj_endereco, telefone=obj_telefone, user=obj_user)
+        obj_funcionario = Funcionario.objects.create(salario=salario, periodo_trabalho=periodo, usuario=obj_usuario,tipo_funcionario=obj_tipo, situacao=obj_situacao)
+
+        obj_tipo.save()
+        obj_telefone.save()
+        obj_endereco.save()
+        obj_user.save()
+        obj_usuario.save()
+        obj_situacao.save()
+        obj_funcionario.save()
+
+        return HttpResponseRedirect('/gerente/consultar_funcionario/')
+
     else:
-        funcform = FuncionarioForm()
-        usrform = UsuarioForm()
-        tpfuncform = TipofuncionarioForm()
-        endform = EnderecoForm()
-        sform = SituacaoForm()
-        telform = TelefoneForm()
-        userform = UserCreationForm()
-
-    data['funcionarios'] = funcform
-    data['usuarios'] = usrform
-    data['tipos'] = tpfuncform
-    data['enderecos'] = endform
-    data['situacoes'] = sform
-    data['telefones'] = telform
-    data['user'] = userform
-
-    return render(request, 'view/cadG.html', data)
+        return render(request, 'view/cadG.html', data)
 
 @login_required(login_url='/login/')
 def consultar_funcionario(request):
@@ -445,66 +438,64 @@ def editar_funcionario_gerente(request, id):
     data = {}
     funcionario = Funcionario.objects.get(pk=id)
     usuario = funcionario.usuario
-    old_user = usuario.user
+    obj_user = usuario.user
 
     if request.method == "POST":
+        usuario.cpf = request.POST.get('cpf_funcionario')
+        usuario.nome = request.POST.get('nome_funcionario')
+        usuario.sobrenome = request.POST.get('sobrenome_funcionario')
+        usuario.email = request.POST.get('email_funcionario')
+        usuario.endereco.rua = request.POST.get('rua_funcionario')
+        usuario.endereco.numero_casa = request.POST.get('numero_funcionario')
+        usuario.endereco.complemento = request.POST.get('comp_funcionario')
+        usuario.endereco.bairro = request.POST.get('bairro_funcionario')
+        usuario.endereco.cep = request.POST.get('cep_funcionario')
+        usuario.endereco.cidade = request.POST.get('cidade_funcionario')
+        usuario.telefone.ddd1 = request.POST.get('ddd_funcionario')
+        usuario.telefone.numero1 = request.POST.get('tel_funcionario')
+        usuario.telefone.ddd2 = request.POST.get('ddd2_funcionario')
+        usuario.telefone.numero2 = request.POST.get('tel2_funcionario')
+        funcionario.salario = request.POST.get('salario_funcionario')
+        funcionario.periodo_trabalho = request.POST.get('periodo_funcionario')
+        funcionario.situacao.descricao = request.POST.get('situacao_funcionario')
+        funcionario.tipo_funcionario.desc_tipo = request.POST.get('tipo_funcionario')
 
-        funcform = FuncionarioForm(request.POST, instance=funcionario)
-        usrform = UsuarioForm(request.POST, instance=usuario)
-        tpfuncform = TipofuncionarioForm(request.POST, instance=funcionario.tipo_funcionario)
-        endform = EnderecoForm(request.POST, instance=usuario.endereco)
-        sform = SituacaoForm(request.POST, instance=funcionario.situacao)
-        telform = TelefoneForm(request.POST, instance=usuario.telefone)
+        if tipo == "Funcionario":
+            gfuncionario = Group.objects.get(name='funcionario')
+            obj_user.groups.add(gfuncionario)
 
-        if telform.is_valid() and sform.is_valid() and endform.is_valid() and tpfuncform.is_valid() and sform.is_valid() and all(
-                [usrform.is_valid() for usr in usrform])and all([funcform.is_valid() for func in funcform]):
+        elif tipo == "Gerente":
+            ggerente = Group.objects.get(name='gerente')
+            obj_user.groups.add(ggerente)
 
-            old_user.groups.clear()
-            new_telefone = telform.save()
-            new_tipo = tpfuncform.save()
-            new_end = endform.save()
-            new_situacao = sform.save()
 
-            if new_tipo.desc_tipo == 'F':
-                gfunc = Group.objects.get(name='funcionario')
-            else:
-                gfunc = Group.objects.get(name='gerente')
+        obj_tipo.save()
+        obj_telefone.save()
+        obj_endereco.save()
+        obj_user.save()
+        obj_usuario.save()
+        obj_situacao.save()
+        obj_funcionario.save()
 
-            old_user.groups.add(gfunc)
-
-            for usr in usrform:
-                new_user = usrform.save(commit=False)
-                new_user.telefone = new_telefone
-                new_user.endereco = new_end
-                new_user.user = old_user
-                new_user.save()
-
-                for func in funcform:
-                    new_func = funcform.save(commit=False)
-                    new_func.situacao = new_situacao
-                    new_func.tipo_funcionario = new_tipo
-                    new_func.usuario = new_user
-                    new_func.save()
-
-                return HttpResponseRedirect('/gerente/consultar_funcionario/')
-
+        return HttpResponseRedirect('/gerente/consultar_funcionario/')
     else:
-        funcform = FuncionarioForm(instance=funcionario)
-        usrform = UsuarioForm(instance=usuario)
-        tpfuncform = TipofuncionarioForm(instance=funcionario.tipo_funcionario)
-        endform = EnderecoForm(instance=usuario.endereco)
-        sform = SituacaoForm(instance=funcionario.situacao)
-        telform = TelefoneForm(instance=usuario.telefone)
+        data['id'] = id
+        data['cpf'] = usuario.cpf
+        data['nome'] = usuario.nome
+        data['snome'] = usuario.sobrenome
+        data['email'] = usuario.email
+        data['rua'] = usuario.endereco.rua
+        data['numero'] = usuario.endereco.numero_casa
+        data['comp'] = usuario.endereco.complemento
+        data['bairro'] = usuario.endereco.bairro
+        data['cep'] = usuario.endereco.cep
+        data['cidade'] = usuario.endereco.cidade
+        data['ddd1'] = usuario.telefone.ddd1
+        data['telefone1'] = usuario.telefone.numero1
+        data['ddd2'] = usuario.telefone.ddd2
+        data['telefone2'] = usuario.telefone.numero2
 
-
-    data['funcionarios'] = funcform
-    data['usuarios'] = usrform
-    data['tipos'] = tpfuncform
-    data['enderecos'] = endform
-    data['situacoes'] = sform
-    data['telefones'] = telform
-
-    return render(request, 'view/editeEdicaoG.html', data)
+        return render(request, 'view/editeEdicaoG.html', data)
 
 @login_required(login_url='/login/')
 def excluir_funcionario_gerente(request, pk):
@@ -671,7 +662,6 @@ def new_estoque(request):
         raise PermissionDenied
 
     if request.method == "POST":
-
         nome = request.POST.get('nome_estoque')
         quant = request.POST.get('quantidade_estoque')
         marca = request.POST.get('marca_estoque')

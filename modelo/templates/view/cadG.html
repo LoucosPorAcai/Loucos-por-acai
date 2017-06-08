@@ -68,10 +68,6 @@
 				<div class="linha2"></div>
 				<form action="/gerente/cadastro_funcionario/" method="POST" class="form-horizontal mei">
 				{% csrf_token %}
-
-						
-				
-	
 				<fieldset>
   				<legend>Pessoal:</legend>
 				  <div class="form-group">
@@ -99,17 +95,17 @@
 				    </div>
 				  </div>
 					<div class="form-group">
-				    <label class="control-label col-sm-2" for="endereco">complemento:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="complemento_funcionario" id="complemento" placeholder="">
-				    </div>
-				    </div>
-				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="numero">* N:</label>
 				    <div class="col-sm-10"> 
 				      <input type="text" class="form-control tam" name="numero_funcionario" id="numero" placeholder="">
 				    </div>
 				  </div>
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="endereco">complemento:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="comp_funcionario" id="complemento" placeholder="">
+				    </div>
+				    </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Bairro:</label>
 				    <div class="col-sm-10"> 
@@ -137,7 +133,7 @@
 				 <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone">* Telefone:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="telefone_funcionario" id="telefone" placeholder="">
+				      <input type="text" class="form-control tam" name="tel_funcionario" id="telefone" placeholder="">
 				    </div>
 				  </div>
 				 
@@ -151,7 +147,7 @@
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone2"> Telefone2:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="telefone2_funcionario" id="telefone2" placeholder="">
+				      <input type="text" class="form-control tam" name="tel2_funcionario" id="telefone2" placeholder="">
 				    </div>
 				  </div>
 				 </fieldset>
@@ -171,16 +167,12 @@
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">Situação:</label>
-				    <div class="col-sm-10"> 
-				      	  <div class="dropdown">
-							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							    Selecionar
-							    <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    <li><a href="#" name="ativo">Ativo</a></li>
-							    <li><a href="#" name="inativo">Inativo</a></li>
-							 </div>
+
+						<select name="situacao_funcionario">
+							<option value="Ativo">Ativo</option>
+							<option value="Inativo">Inativo</option>
+						</select>
+
 				  </div>
 				  </fieldset>
 				  <fieldset>
@@ -194,32 +186,25 @@
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">* Senha:</label>
 				    <div class="col-sm-10"> 
-				      <input name="senha__funcionario" type="password" class="form-control tam" id="pwd" placeholder="">
+				      <input name="senha_funcionario" type="password" class="form-control tam" id="pwd" placeholder="">
 				    </div>
 				  </div>
 					 <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">* E-mail:</label>
 				    <div class="col-sm-10"> 
-				      <input type="password" class="form-control tam" name="E-mail_funcionario" id="pwd" placeholder="">
+				      <input type="text" class="form-control tam" name="email_funcionario" id="pwd" placeholder="">
 				    </div>
 				  </div>
-				
-				    <div class="form-group">
-				    <label class="control-label col-sm-2 al" for="pwd">Tipo: </label>
-				    <div class="col-sm-10"> 
-				      	  <div class="dropdown">
-							  <button class="btn btn-default dropdown-toggle al3" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							    Selecionar
-							    <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu al3" aria-labelledby="dropdownMenu1">
-							    <li><a href="#" name="ativo">Funcionario</a></li>
-							    <li><a href="#" name="inativo">Gerente</a></li>
-							 </div>
+
+				  <div class="form-group">
+				  <label class="control-label col-sm-2 al" for="pwd">Tipo: </label>
+						<select name="tipo_funcionario">
+							<option value="Funcionario">Funcionario</option>
+							<option value="Gerente">Gerente</option>
+						</select>
+		
 				  </div>
 				  </fieldset>
-				
-				  
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
 				      <button type="submit" class="btn meu">Cadastrar</button>

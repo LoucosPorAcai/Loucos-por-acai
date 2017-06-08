@@ -11,16 +11,7 @@ from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
 from datetime import date
-TIPO_CHOICES = (
-    ('F', 'Funcionario'),
-    ('G', 'Gerente'),
-)
-DESCRICAO_CHOICES = (
 
-    ('I', 'Inativo'),
-    ('A', 'Ativo'),
-
-)
 
 class Estoque(models.Model):
 
@@ -127,7 +118,7 @@ class Cliente(models.Model):
 class Situacao(models.Model):
 
     id = models.AutoField(primary_key=True)  # AutoField?
-    descricao = models.CharField(max_length=45,choices=DESCRICAO_CHOICES, default=TIPO_CHOICES[0], null=False)
+    descricao = models.CharField(max_length=45, null=False)
 
     class Meta:
         db_table = 'modelo_situacao'
@@ -137,7 +128,7 @@ class Tipofuncionario(models.Model):
 
 
     id = models.AutoField(primary_key=True)  # AutoField?
-    desc_tipo = models.CharField(max_length=45, choices=TIPO_CHOICES, default=TIPO_CHOICES[0], null=False)
+    desc_tipo = models.CharField(max_length=45, null=False)
 
     class Meta:
         db_table = 'modelo_tipoFuncionario'

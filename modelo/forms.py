@@ -1,6 +1,16 @@
 from django import forms
 from .models import *
 
+TIPO_CHOICES = (
+    ('F', 'Funcionario'),
+    ('G', 'Gerente'),
+)
+DESCRICAO_CHOICES = (
+
+    ('I', 'Inativo'),
+    ('A', 'Ativo'),
+
+)
 
 class EstoqueForm(forms.ModelForm):
 
@@ -8,12 +18,11 @@ class EstoqueForm(forms.ModelForm):
         model = Estoque
         fields = ('nome','marca','preco','quant_produtos','minimo','pontos',)
 
-class FuncionarioForm(forms.ModelForm):
+class FuncionarioForm(forms.Form):
 
-    class Meta:
-        model = Funcionario
-        fields = ('salario','periodo_trabalho',)
-        exclude = ('usuario','tipo_funcionario','situacao',)
+    tipo_funcionario = forms.ChoiceField(choices=TIPO_CHOICES,widget=forms.Select(attrs={'class':'Dropdown'}))
+    situacao = forms.ChoiceField(choices=DESCRICAO_CHOICES)
+
 
 class UsuarioForm(forms.ModelForm):
 
