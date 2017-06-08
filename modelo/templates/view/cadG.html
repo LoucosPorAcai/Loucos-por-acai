@@ -7,24 +7,22 @@
 		<title>Principal</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css'%}">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css'%}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/mobile.css'%}" media="screen and (max-width: 1000px)">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
 	<body>
 		<div class="row cor ">
 			<div class="col-sm-8">
-				<img class="img-responsive tamanho" src="{% static 'imagens/loucos2.png'%}">
+				<img class="img-responsive tamanho mudar" src="{% static 'imagens/loucos2.png'%}">
 			</div>
 			<div class="col-sm-4">
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">
-							<div class="col-sm-6">
-								<img class="img-responsive mud4 direita" src="{% static 'imagens/akivo.png' %}">
-							</div>
-							<div class="col-lg-6">
+							<div class="col-lg-12">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							    <img class="img-responsive seta" src="{% static 'imagens/seta.png'%}"></a>
+							    <img class="img-responsive  direita tis" src="imagens/funcionarios.png">
 							    <ul class="dropdown-menu">
 							      <li><a href="{% url 'vendasGeren' %}">Venda</a></li>
 							      <li><a href="{% url 'cadastroGeren' %}">Cadastro Funcionario</a></li>
@@ -75,7 +73,8 @@
 						
 				
 	
-	
+				<fieldset>
+  				<legend>Pessoal:</legend>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">* Cpf:</label>
 				    <div class="col-sm-10">
@@ -147,7 +146,9 @@
 				    <label class="lal4" for="pwd"> Telefone 2:</label>
 				    <input  name="telefone2_funcionario"  type="password" class="form-control imp4" id="pwd">
 				  </div>
-				 
+				 </fieldset>
+				  <fieldset>
+ 				 <legend>Empresa:</legend>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="salario">* Salario:</label>
 				    <div class="col-sm-10"> 
@@ -166,6 +167,9 @@
 				      <input type="text" class="form-control tam" name="cargo_funcionario" id="cargo" placeholder="">
 				    </div>
 				  </div>
+				  </fieldset>
+				  <fieldset>
+  					<legend>Login:</legend>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="login">* Login:</label>
 				    <div class="col-sm-10"> 
@@ -197,6 +201,20 @@
 							    <li><a href="#" name="inativo">Inativo</a></li>
 							 </div>
 				  </div>
+				    <div class="form-group">
+				    <label class="control-label col-sm-2 al" for="pwd">Tipo: </label>
+				    <div class="col-sm-10"> 
+				      	  <div class="dropdown">
+							  <button class="btn btn-default dropdown-toggle al3" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+							    Selecionar
+							    <span class="caret"></span>
+							  </button>
+							  <ul class="dropdown-menu al3" aria-labelledby="dropdownMenu1">
+							    <li><a href="#" name="ativo">Funcionario</a></li>
+							    <li><a href="#" name="inativo">Gerente</a></li>
+							 </div>
+				  </div>
+				  </fieldset>
 				
 				  
 				  <div class="form-group"> 
@@ -226,11 +244,9 @@
 						
 					<div class="col-sm-4">
 						<div class="row tes">
-							<div class="col-sm-2 ">
-								<img class="img-responsive dimm " src="{% static 'imagens/icontel.png' %}">
-							</div>
+							
 							<div class="col-sm-8">
-								<p style="color: white">(85) 9 9856-6485</p>
+								<p class="vamola" style="color: white">(85) 9 9856-6485</p>
 							</div>
 						</div>
 						<p class="ajuste">Rua Lyberto Rodrigues de Castro Número 676 </p>
