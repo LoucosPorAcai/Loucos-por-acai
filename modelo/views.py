@@ -174,8 +174,8 @@ def lista_itens(request, cliente, atendimento, estoque=None):
         nestoque.quant_produtos += 1
         nestoque.save()
         carrinho = atendimento.carrinho
-        carrinho.estoque.add(estoque)
-        carrinho.valor_Total += estoque.preco
+        carrinho.estoque.add(nestoque)
+        carrinho.valor_Total += nestoque.preco
         carrinho.save()
         data['estoques'] = Estoque.objects.all()
 
@@ -194,13 +194,13 @@ def finalizar_compra(request,cliente,atendimento):
     atendimento = Atendimento.objects.get(id=atendimento)
     cliente = Cliente.objects.get(id=cliente)
 
-    if atendimento.carrinho.valor_Total >= 7.00:
+    if atendimento.carrinho.valor_Total >= 7:
         for estoque in atendimento.carrinho.estoque.all():
             cliente.cartao.quant_pontos += estoque.pontos
             cliente.save()
     for estoque in Estoque.objects.all():
         estoque.quant_produtos = 0
-
+        estoque.save()
     atendimento.save()
     return HttpResponse('Compra finalizada com sucesso!')
 
@@ -547,7 +547,84 @@ def consultar_historico(request):
 def vendas_gerente(request):
     if not request.user.has_perm('global_permissions.acessar_gerente'):
         raise PermissionDenied
+    data = {}
+    if request.method == 'POST':
+        cpf = request.POST.get('CPF')
+        try:
+            usuario = getUsuarioByCpf(cpf)
+            if usuario.isCliente():
+                cliente = Cliente.objects.get(usuario=usuario)
+                funcionario = getFuncionarioByUser(request.user)
+                carrinho = Carrinho.objects.create(valor_Total=0)
+                atendimento = Atendimento.objects.create(cliente=cliente, funcionario=funcionario, carrinho=carrinho)
+
+                data['cliente'] = cliente
+                data['atendimento'] = atendimento
+                data['estoques'] = Estoque.objects.all()
+
+                return render(request, 'view/vendaG.html', data)
+            else:
+                data['notIsCliente'] = True
+                return render(request, 'view/vendaG.html', data)
+
+        except Usuario.DoesNotExist:
+            data['userIsNone'] = True
+            return render(request, 'view/vendaG.html', data)
+    else:
+        return render(request, 'view/vendaG.html')
+
     return render(request, 'view/vendaG.html')
+
+@login_required(login_url='/login/')
+def lista_itens_gerente(request, cliente, atendimento, estoque=None):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
+    data = {}
+
+    atendimento = Atendimento.objects.get(id=atendimento)
+    cliente = Cliente.objects.get(id=cliente)
+    carrinho = None
+    query_estoque = request.POST.get('codigo')
+
+    if query_estoque:
+
+        estoque = Estoque.objects.filter(nome__contains = query_estoque)
+        data['estoques'] = estoque
+
+    else:
+        nestoque = getProdutoById(estoque)
+        nestoque.quant_produtos += 1
+        nestoque.save()
+        carrinho = atendimento.carrinho
+        carrinho.estoque.add(nestoque)
+        carrinho.valor_Total += nestoque.preco
+        carrinho.save()
+        data['estoques'] = Estoque.objects.all()
+
+    data['cliente'] = cliente
+    data['atendimento'] = atendimento
+    data['carrinho'] = carrinho
+    data['valor'] = carrinho.valor_Total
+
+    return render(request,'view/vendaG.html', data)
+
+@login_required(login_url='/login/')
+def finalizar_compra_gerente(request,cliente,atendimento):
+    if not request.user.has_perm('global_permissions.acessar_gerente'):
+        raise PermissionDenied
+    atendimento = Atendimento.objects.get(id=atendimento)
+    cliente = Cliente.objects.get(id=cliente)
+
+    if atendimento.carrinho.valor_Total >= 7.00:
+        for estoque in atendimento.carrinho.estoque.all():
+            cliente.cartao.quant_pontos += estoque.pontos
+            cliente.save()
+    for estoque in Estoque.objects.all():
+        estoque.quant_produtos = 0
+        estoque.save()
+
+    atendimento.save()
+    return HttpResponse('Compra finalizada com sucesso!')
 
 @login_required(login_url='/login/')
 def consulta_estoque(request):

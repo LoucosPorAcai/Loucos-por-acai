@@ -38,10 +38,17 @@ urlpatterns = [
     url(r'^gerente/consultar_funcionario/excluir_funcionario/(?P<id>[0-9]+)$', views.excluir_funcionario_gerente, name='excluirFuncionario'),
     url(r'^gerente/consultar_historico/$', views.consultar_historico, name='consultarHistor'),
     url(r'^gerente/venda/$', views.vendas_gerente, name='vendasGeren'),
+    url(r'^gerente/venda/cliente=(?P<cliente>[0-9]+)atendimento=(?P<atendimento>[0-9]+)$', views.finalizar_compra_gerente,
+        name='finalizar_compra_gerente'),
+    url(r'^gerente/venda/cliente=(?P<cliente>[0-9]+)atendimento=(?P<atendimento>[0-9]+)$', views.lista_itens_gerente,
+        name='lista_itens_gerente'),
+    url(r'^gerente/venda/cliente=(?P<cliente>[0-9]+)atendimento=(?P<atendimento>[0-9]+)prod=(?P<estoque>[0-9]+)$',
+        views.lista_itens_gerente, name='lista_itens_estoque_gerente'),
     url(r'^gerente/cadastro_estoque/$', views.new_estoque, name='cadastroEstoque'),
     url(r'^gerente/consulta_estoque/$', views.consulta_estoque, name='consulta_estoque'),
     url(r'^gerente/consulta_estoque/edicao/(?P<pk>[0-9]+)$', views.edita_estoque, name='edita_estoque'),
     url(r'^gerente/consulta_estoque/deletar/(?P<pk>[0-9]+)/$', views.delete_estoque, name='delete_estoque'),
+
     url(r'^logout/$', views.deslogar, name='logout'),
 ]
 
