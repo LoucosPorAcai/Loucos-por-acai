@@ -193,10 +193,11 @@ def finalizar_compra(request,cliente,atendimento):
         raise PermissionDenied
     atendimento = Atendimento.objects.get(id=atendimento)
     cliente = Cliente.objects.get(id=cliente)
-
+    cartao = Cartao.objects.get(id= cliente.cartao.id)
     if atendimento.carrinho.valor_Total >= 7:
         for estoque in atendimento.carrinho.estoque.all():
-            cliente.cartao.quant_pontos += estoque.pontos
+            cartao.quant_pontos += (estoque.quant_produtos*estoque.pontos)
+            cartao.save()
             cliente.save()
     for estoque in Estoque.objects.all():
         estoque.quant_produtos = 0
