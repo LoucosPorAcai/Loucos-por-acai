@@ -72,7 +72,8 @@
 					      </tr>
 					    </thead>
 					    <tbody>
-								{% for atendimento in atendimentos%}
+							{% for atendimento in atendimentos%}
+								{% if atendimento.carrinho.valor_Total != 0 %}
 					      <tr>
 					        <td>{{atendimento.id}}</td>
 					        <td class="centr">{{atendimento.funcionario.usuario.nome}} {{atendimento.funcionario.usuario.sobrenome}}</td>
@@ -80,7 +81,8 @@
 					        <td class="centr">{{atendimento.data_compra}}</td>
 					        <td class="centr">{{atendimento.carrinho.valor_Total}}</td>
 					      </tr>
-								{%endfor%}
+						  		{%endif%}
+							{%endfor%}
 					    </tbody>
 					  </table>
 				  </div>

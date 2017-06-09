@@ -460,22 +460,22 @@ def editar_funcionario_gerente(request, id):
         funcionario.situacao.descricao = request.POST.get('situacao_funcionario')
         funcionario.tipo_funcionario.desc_tipo = request.POST.get('tipo_funcionario')
 
-        if tipo == "Funcionario":
+        if  funcionario.tipo_funcionario.desc_tipo == "Funcionario":
             gfuncionario = Group.objects.get(name='funcionario')
             obj_user.groups.add(gfuncionario)
 
-        elif tipo == "Gerente":
+        elif  funcionario.tipo_funcionario.desc_tipo == "Gerente":
             ggerente = Group.objects.get(name='gerente')
             obj_user.groups.add(ggerente)
 
 
-        obj_tipo.save()
-        obj_telefone.save()
-        obj_endereco.save()
-        obj_user.save()
-        obj_usuario.save()
-        obj_situacao.save()
-        obj_funcionario.save()
+        funcionario.tipo_funcionario.save()
+        usuario.telefone.save()
+        usuario.endereco.save()
+        usuario.user.save()
+        usuario.save()
+        funcionario.situacao.save()
+        funcionario.save()
 
         return HttpResponseRedirect('/gerente/consultar_funcionario/')
     else:
@@ -494,6 +494,10 @@ def editar_funcionario_gerente(request, id):
         data['telefone1'] = usuario.telefone.numero1
         data['ddd2'] = usuario.telefone.ddd2
         data['telefone2'] = usuario.telefone.numero2
+        data['salario'] = funcionario.salario
+        data['periodo'] = funcionario.periodo_trabalho
+        data['situacao'] = funcionario.situacao.descricao
+        data['tipo'] = funcionario.tipo_funcionario.desc_tipo
 
         return render(request, 'view/editeEdicaoG.html', data)
 

@@ -67,7 +67,7 @@
 				  <div id="home" class="tab-pane fade in active">
 				    <img class="img-responsive centralizar tama" src="{% static 'imagens/akivo.png' %}"><h2>Editar Funcionario</h2>
 				<div class="linha2"></div>
-				<form method="POST" action="/gerente/consultar_funcionario/editar_funcionario/" class="form-horizontal mei"> 
+				<form method="POST" action="{% url 'editarFuncionario' id=id %}" class="form-horizontal mei"> 
 				{% csrf_token %}
 
 			<fieldset>
@@ -75,67 +75,67 @@
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">* Cpf:</label>
 				    <div class="col-sm-10">
-				      <input type="cpf" class="form-control tam" name ="cpf_funcionario" id="cpf" placeholder="">
+				      <input value="{{cpf}}" type="cpf" class="form-control tam" name ="cpf_funcionario" id="cpf" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="name">* Nome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" name="nome_funcionario" id="nome" placeholder="">
+				      <input value="{{nome}}" type="name" class="form-control tam" name="nome_funcionario" id="nome" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="name">* Sobrenome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" name="sobrenome_funcionario" id="nome" placeholder="">
+				      <input  value="{{snome}}" type="name" class="form-control tam" name="sobrenome_funcionario" id="nome" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Rua:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="rua_funcionario" id="endereco" placeholder="">
+				      <input value="{{rua}}" type="text" class="form-control tam" name="rua_funcionario" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
-				    <label class="control-label col-sm-2" for="numero">* N:</label>
+				    <label class="control-label col-sm-2" for="numero">* Nº:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="numero_funcionario" id="numero" placeholder="">
+				      <input value="{{numero}}" type="text" class="form-control tam" name="numero_funcionario" id="numero" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">complemento:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="comp_funcionario" id="complemento" placeholder="">
+				      <input value="{{comp}}" type="text" class="form-control tam" name="comp_funcionario" id="complemento" placeholder="">
 				    </div>
 				    </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Bairro:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="bairro_funcionario" id="endereco" placeholder="">
+				      <input value="{{bairro}}" type="text" class="form-control tam" name="bairro_funcionario" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Cidade:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="cidade_funcionario" id="endereco" placeholder="">
+				      <input value="{{cidade}}" type="text" class="form-control tam" name="cidade_funcionario" id="endereco" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cep">* Cep:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="cep_funcionario" id="cep" placeholder="">
+				      <input value="{{cep}}" type="text" class="form-control tam" name="cep_funcionario" id="cep" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="ddd">* DDD:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="ddd_funcionario" id="ddd" placeholder="">
+				      <input value="{{ddd1}}" type="text" class="form-control tam" name="ddd_funcionario" id="ddd" placeholder="">
 				    </div>
 				  </div>
 				 <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone">* Telefone:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="tel_funcionario" id="telefone" placeholder="">
+				      <input value="{{telefone1}}" type="text" class="form-control tam" name="tel_funcionario" id="telefone" placeholder="">
 				    </div>
 				  </div>
 				 
@@ -143,13 +143,13 @@
 				<div class="form-group">
 				    <label class="control-label col-sm-2" for="ddd2"> DDD2:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="ddd2_funcionario" id="ddd2" placeholder="">
+				      <input value="{{ddd2}}" type="text" class="form-control tam" name="ddd2_funcionario" id="ddd2" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="telefone2"> Telefone2:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="tel2_funcionario" id="telefone2" placeholder="">
+				      <input value="{{telefone2}}" type="text" class="form-control tam" name="tel2_funcionario" id="telefone2" placeholder="">
 				    </div>
 				  </div>
 				 </fieldset>
@@ -158,19 +158,19 @@
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="salario">* Salario:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="salario_funcionario" id="salario" placeholder="">
+				      <input value="{{salario}}" type="text" class="form-control tam" name="salario_funcionario" id="salario" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="periodo">* Periodo de Trabalho:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="periodo_funcionario" id="periodo" placeholder="">
+				      <input value="{{periodo}}" type="text" class="form-control tam" name="periodo_funcionario" id="periodo" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">Situação:</label>
 
-						<select name="situacao_funcionario">
+						<select value="{{situacao}}" name="situacao_funcionario">
 							<option value="Ativo">Ativo</option>
 							<option value="Inativo">Inativo</option>
 						</select>
@@ -181,22 +181,29 @@
 					 <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">* E-mail:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="email_funcionario" id="pwd" placeholder="">
+				      <input value="{{email}}" type="text" class="form-control tam" name="email_funcionario" id="pwd" placeholder="">
 				    </div>
 				  </div>
 
 				  <div class="form-group">
 				  <label class="control-label col-sm-2 al" for="pwd">Tipo: </label>
-						<select name="tipo_funcionario">
+						<select  name="tipo_funcionario">
+
+							{% if tipo == "Funcionario" or tipo == "F" %}
 							<option value="Funcionario">Funcionario</option>
 							<option value="Gerente">Gerente</option>
+							{% else %}
+							<option value="Gerente">Gerente</option>
+							<option value="Funcionario">Funcionario</option>
+							{% endif %}
+
 						</select>
 		
 				  </div>
 				  </fieldset>
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
-				      <button type="submit" class="btn meu">Cadastrar</button>
+				      <button type="submit" class="btn meu">Editar</button>
 				    </div>
 				  </div>
 				</form>
