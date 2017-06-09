@@ -7,6 +7,7 @@
 		<title>Principal</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/mobile.css'%}" media="screen and (max-width: 1000px)">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
@@ -19,16 +20,13 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">
-							<div class="col-sm-6">
-								<img class="img-responsive mud4 direita" src="{% static 'imagens/akivo.png'%}">
-							</div>
+							
 							<div class="col-lg-6">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							    <img class="img-responsive seta" src="{% static 'imagens/seta.png'%}"></a>
-							    <ul class="dropdown-menu">
+							    <img class="img-responsive seta" style="width: 50%; height: 50%; margin-left: 30%; margin-top: 20%" src="{% static 'imagens/funcionarios.png'%}"></a>
+							    <ul class="dropdown-menu" style="margin-left: 50%;">
 							      <li><a href="{% url 'vendas' %}">Venda</a></li>
 							      <li><a href="{% url 'cadastroFunc' %}">Cadastro</a></li>
-							      <li><a href="#">Editar</a></li>
 							      <li><a href="{% url 'logout' %}">Sair</a></li> 
 							    </ul>
 							</div>
@@ -62,94 +60,133 @@
 				
 				<form action="{% url 'editeEdicaoFunc' id=id %}" method="POST" 
 				class="form-horizontal mei"> {% csrf_token %}
-					
-				 <div class="form-group">
+				<fieldset>
+  				<legend>Pessoal:</legend>
+				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">* Cpf:</label>
 				    <div class="col-sm-10">
-				      <input value= "{{cpf}}" name="cpf_cliente" type="text" class="form-control tam" id="cpf" placeholder="Somente números">
+				      <input type="cpf" class="form-control tam" name ="cpf_funcionario" id="cpf" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="name">* Nome:</label>
 				    <div class="col-sm-10"> 
-				      <input value= "{{nome}}" name="nome_cliente" type="text" class="form-control tam" id="nome" placeholder="">
+				      <input type="name" class="form-control tam" name="nome_funcionario" id="nome" placeholder="">
 				    </div>
 				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="sbrname">* Sobrenome:</label>
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="name">* Sobrenome:</label>
 				    <div class="col-sm-10"> 
-				      <input value= "{{snome}}" name="sobrenome_cliente" type="text" class="form-control tam" id="sbrnome" placeholder="">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="email">* Email:</label>
-				    <div class="col-sm-10"> 
-				      <input value= "{{email}}" name="email_cliente" type="email" class="form-control tam" id="email" placeholder="">
+				      <input type="name" class="form-control tam" name="sobrenome_funcionario" id="nome" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Rua:</label>
 				    <div class="col-sm-10"> 
-				      <input value= "{{rua}}" type="text" class="form-control tam" name="rua_cliente" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="rua_funcionario" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco">* Nº:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value= "{{numero}}" type="number" class="form-control tam" name="numero_cliente" id="endereco" placeholder="">
-				    	</div>
+				    <label class="control-label col-sm-2" for="numero">* N:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="numero_funcionario" id="numero" placeholder="">
+				    </div>
 				  </div>
 					<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco">* Comp.:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value= "{{comp}}" type="text" class="form-control tam" name="comp_cliente" id="endereco" placeholder="">
-				    	</div>
+				    <label class="control-label col-sm-2" for="endereco">complemento:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="comp_funcionario" id="complemento" placeholder="">
+				    </div>
+				    </div>
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="endereco">* Bairro:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="bairro_funcionario" id="endereco" placeholder="">
+				    </div>
 				  </div>
 					<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco">* Bairro:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value= "{{bairro}}" type="text" class="form-control tam" name="bairro_cliente" id="endereco" placeholder="">
-				    	</div>
+				    <label class="control-label col-sm-2" for="endereco">* Cidade:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="cidade_funcionario" id="endereco" placeholder="">
+				    </div>
 				  </div>
-					<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco">* CEP:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value= "{{cep}}" type="text" class="form-control tam" name="cep_cliente" id="endereco" placeholder="">
-				    	</div>
+				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="cep">* Cep:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="cep_funcionario" id="cep" placeholder="">
+				    </div>
 				  </div>
-					<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco">* Cidade:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value= "{{cidade}}" type="text" class="form-control tam" name="cidade_cliente" id="endereco" placeholder="">
-				    	</div>
+				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="ddd">* DDD:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="ddd_funcionario" id="ddd" placeholder="">
+				    </div>
 				  </div>
-					<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco">* DDD:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value= "{{ddd1}}" type="number" class="form-control tam" name="ddd_cliente" id="endereco" placeholder="">
-				    	</div>
+				 <div class="form-group">
+				    <label class="control-label col-sm-2" for="telefone">* Telefone:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="tel_funcionario" id="telefone" placeholder="">
+				    </div>
 				  </div>
-					<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco">* Telefone:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value= "{{telefone1}}" type="number" class="form-control tam" name="tel_cliente" id="endereco" placeholder="">
-				    	</div>
+				 
+				
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="ddd2"> DDD2:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="ddd2_funcionario" id="ddd2" placeholder="">
+				    </div>
 				  </div>
-						<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco"> DDD - 2:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value="{{ddd2}}" type="number" class="form-control tam" name="ddd2_cliente" id="endereco" placeholder="">
-				    	</div>
+				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="telefone2"> Telefone2:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="tel2_funcionario" id="telefone2" placeholder="">
+				    </div>
 				  </div>
-					<div class="form-group">
-				  		<label class="control-label col-sm-2" for="endereco"> Telefone - 2:</label>
-				    	<div class="col-sm-10"> 
-				     		<input value="{{telefone2}}" type="number" class="form-control tam" name="tel2_cliente" id="endereco" placeholder="">
-				    	</div>
+				 </fieldset>
+				  <fieldset>
+ 				 <legend>Empresa:</legend>
+				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="salario">* Salario:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="salario_funcionario" id="salario" placeholder="">
+				    </div>
 				  </div>
+				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="periodo">* Periodo de Trabalho:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="periodo_funcionario" id="periodo" placeholder="">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="pwd">Situação:</label>
+
+						<select name="situacao_funcionario">
+							<option value="Ativo">Ativo</option>
+							<option value="Inativo">Inativo</option>
+						</select>
+
+				  </div>
+				  </fieldset>
+				  
+					 <div class="form-group">
+				    <label class="control-label col-sm-2" for="pwd">* E-mail:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="email_funcionario" id="pwd" placeholder="">
+				    </div>
+				  </div>
+
+				  <div class="form-group">
+				  <label class="control-label col-sm-2 al" for="pwd">Tipo: </label>
+						<select name="tipo_funcionario">
+							<option value="Funcionario">Funcionario</option>
+							<option value="Gerente">Gerente</option>
+						</select>
+		
+				  </div>
+				  </fieldset>
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
-				      <button type="submit" class="btn meu">Editar</button>
+				      <button type="submit" class="btn meu">Cadastrar</button>
 				    </div>
 				  </div>
 				</form>

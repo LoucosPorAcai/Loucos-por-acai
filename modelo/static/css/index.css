@@ -1540,6 +1540,369 @@ h3{
 	}
 
 	}
+	
+.cor{
+	background-image: linear-gradient(to top, #9933ff,  #1a1a1a 50%, #400080);
+
+}
+
+.cores{
+	background-color:  #9933ff;
+
+}
+
+a:hover{
+	color: white;
+}
+
+.tamanho{
+	width: 50%;
+	height: 50%;
+	float: right;
+}
+
+.mud{
+	width: 170px;
+	height: 40px;
+	margin: 0 auto;
+	margin-top: 10%;
+}
+
+.alinhamento{
+	float: right;
+}
+
+.linha{
+	height: 1px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 50px;
+	margin-right: 50px;
+	background-color: #cccccc;
+}
+
+.mud2{
+	height: 30%;
+	width: 30%;
+	margin: 0 auto;
+}
+
+
+
+.meior{
+	margin-left: 23%;
+}
+
+h2{
+	text-align: center;
+}
+
+.center{
+	margin: 0 auto;
+	margin-top: 10%;
+	height: 80%;
+	width: 80%;
+}
+
+.tamanho2{
+	width: 100%;
+	height: 100%;
+	margin: 0 auto;
+}
+.mud3{
+	height: 10%;
+	width: 10%;
+	margin: 0 auto;
+}
+
+.texto{
+	text-align: center;
+	color: white;
+}
+
+.mud4{
+	width: 20px;
+	height: 20px;
+	margin: 0 auto;
+	margin-top: 25%;
+}
+
+.seta{
+	width: 20px;
+	height: 20px;
+	margin-top: 18%;
+
+}
+
+.tis{
+	width: 20%;
+	height: 20%;
+}
+
+.direita{
+	margin-left: 60%;
+}
+
+.dim{
+	width: 70%;
+	margin-left: 25%;
+		
+}
+
+.borda{
+	margin: 0 auto;
+	border: 1px solid #cccccc;
+	width: 60%;
+	margin-top: 10%;
+	margin-bottom: 10%;	
+	border-radius: 5px;
+	box-shadow: 5px 5px 10px 5px black;
+}
+
+.baixar{
+	margin-top: 5%;
+}
+
+.afastar{
+	margin-left: 22%;
+}
+
+.mu{
+	width: 20%;
+	height: 20%;
+	margin: 0 auto;
+}
+
+.dimm{
+	width: 100%;
+	height: 100%;
+	float: right;
+}
+
+.ajuste{
+	text-align: center;
+	color: white;
+}
+
+.tes{
+	margin-left: 11%;
+	margin-top: 15%;
+}
+
+.centralizar{
+	margin: 0 auto;
+}
+
+.espaco{
+	padding-top: 5%;
+	padding-bottom: 5%;
+}
+
+.frame{
+	width: 400px;
+	height: 200px; 
+}
+
+.letra{
+	font-size: 20px;
+}
+
+.dimm2{
+	width: 70%;
+	height: 70%;
+	float: right;
+}
+
+.ajuste2{
+	text-align: center;
+	color: black;
+	font-size: 20px;
+	margin-top: 5%;
+}
+
+.borda2{
+	margin: 0 auto;
+	border: 1px solid #cccccc;
+	width: 100%;
+	margin-top: 10%;
+	margin-bottom: 10%;	
+	border-radius: 5px;
+	box-shadow: 5px 5px 10px 5px black;
+}
+
+.linha2{
+	height: 1px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 200px;
+	margin-right: 200px;
+	background-color: #cccccc;
+}
+
+.tam{
+	width: 60%;
+}
+
+.mei{
+	margin-left: 20%;
+}
+
+.mei2{
+	margin-left: 30%;
+}
+
+.mei3{
+	margin-left: 27%;
+}
+
+.meu{
+	color: white;
+	background-color: green; 
+}
+
+.tama{
+	height: 100px;
+	height: 100px;
+	margin-bottom: 2%;
+	margin-top: 2%;
+}
+
+.alinhar{
+	float: right;
+	margin-right: 0.5%;
+}
+.alinhar2{
+	float: right;
+	margin-right: 0.2%;
+	margin-top: 0.2%;
+}
+
+.borda3{
+	margin: 0 auto;
+	border: 1px solid #cccccc;
+	width: 90%;
+	margin-top: 10%;
+	margin-bottom: 10%;	
+	border-radius: 5px;
+	box-shadow: 5px 5px 10px 5px black;
+}
+
+.diminuirs{
+	width: 40%;
+}
+
+.diminuirs2{
+	width: 80%;
+}
+
+.nomes{
+	margin-left: 200px;
+}
+
+.botao{
+	width: 20px;
+	height: 20px;
+}
+
+.centr{
+	text-align: center;
+}
+
+h3{
+	text-align: center;
+	margin-top: 4%;
+}
+
+.raro{
+	width: 30%;
+	margin: 0 auto;
+	margin-top: 5%;
+	margin-bottom: 5%;
+	background-color: green;
+	color: white;
+}
+
+.levar{
+	margin-left: 40%;
+}
+
+.dis{
+	width: 40%;
+
+}
+
+.teste{
+	margin: 0 auto;
+	margin-left: 38%;
+	margin-top: 5%;
+	margin-bottom: 5%;
+}
+
+.vai{
+	width: 80%;
+	margin: 0 auto;
+	margin-left: 20%;
+	
+}
+
+.vai2{
+	width: 80%;
+	margin: 0 auto;
+		margin-left: 20%;
+}
+
+.meio{
+	margin-left: 15%;
+}
+
+.aumentar{
+	height: 500px;
+	margin-left: 5%;
+}
+.aumentar2{
+	height: 500px;
+	margin-right: 5%;
+}
+
+.linha3{
+	height: 1px;
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+	background-color: #cccccc;
+}
+
+.meu2{
+	color: white;
+	background-color: green; 
+	padding-left: 5%;
+	padding-right: 5%;
+	margin-left: 65%;
+	margin-bottom: 5%;
+}
+
+.tamanho2{
+	width: 300px;
+	height: 200px;
+}
+
+.ajeita{
+	text-align: justify;
+	margin-left: 5%;
+	margin-top: 5%;
+	margin-right: 5%;
+}
+
+
+.ajeita2{
+	text-align: justify;
+	margin-left: 5%;
+	margin-top: 5%;
+	margin-right: 5%;
+	margin-bottom: 5%;
+}
+
 
 	
 

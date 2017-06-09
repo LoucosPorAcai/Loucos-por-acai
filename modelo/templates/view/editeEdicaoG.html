@@ -9,6 +9,7 @@
 		<title>Principal</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/mobile.css'%}" media="screen and (max-width: 1000px)">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 	</head>
@@ -21,18 +22,15 @@
 				<div class="row">
 					<div class="col-lg-12">
 						<div class="row">
-							<div class="col-sm-6">
-								<img class="img-responsive mud4 direita" src="{% static 'imagens/akivo.png' %}">
-							</div>
+							
 							<div class="col-lg-6">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							    <img class="img-responsive seta" src="{% static 'imagens/seta.png' %}"></a>
-							    <ul class="dropdown-menu">
+							    <img class="img-responsive seta" style="width: 50%; height: 50%; margin-left: 30%; margin-top: 20%" src="{% static 'imagens/funcionarios.png' %}"></a>
+							    <ul class="dropdown-menu" style="margin-left: 50%;">
 							      <li><a href="{% url 'vendasGeren' %}">Venda</a></li>
 							       <li><a href="{% url 'cadastroGeren' %}">Cadastro Funcionario</a></li>
 							      <li><a href="{% url 'cadastroEstoque' %}">Cadastro Estoque</a></li>
 							      <li><a href="{% url 'consultarHistor' %}">Historico</a></li>
-							      <li><a href="#">Editar</a></li>
 							      <li><a href="{% url 'logout' %}">Sair</a></li> 
 							    </ul>
 							</div>
@@ -72,129 +70,130 @@
 				<form method="POST" action="/gerente/consultar_funcionario/editar_funcionario/" class="form-horizontal mei"> 
 				{% csrf_token %}
 
-			 <div class="form-group">
+			<fieldset>
+  				<legend>Pessoal:</legend>
+				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">* Cpf:</label>
 				    <div class="col-sm-10">
-				      <input type="cpf" class="form-control tam" name ="editar_cpf_funcionario" id="cpf" placeholder="">
+				      <input type="cpf" class="form-control tam" name ="cpf_funcionario" id="cpf" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="name">* Nome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" name="editar_nome_funcionario" id="nome" placeholder="">
+				      <input type="name" class="form-control tam" name="nome_funcionario" id="nome" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="name">* Sobrenome:</label>
 				    <div class="col-sm-10"> 
-				      <input type="name" class="form-control tam" name="editar_sobrenome_funcionario" id="nome" placeholder="">
+				      <input type="name" class="form-control tam" name="sobrenome_funcionario" id="nome" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Rua:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="editar_rua_funcionario" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="rua_funcionario" id="endereco" placeholder="">
 				    </div>
 				  </div>
-					<div class="form-inline geral3"  >
-				  <div class="form-group interno " >
-				    <label style=""  for="email">* Complemento:</label>
-				    <input name="editar_Complemento_funcionario" type="email" class="form-control imp5" id="email">
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="numero">* N:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="numero_funcionario" id="numero" placeholder="">
+				    </div>
 				  </div>
-				  <div class="form-group">
-				    <label class="lal5" for="pwd">* N°:</label>
-				    <input name="editar_numero_funcionario"   type="password" class="form-control imp6" id="pwd">
-				  </div>
+					<div class="form-group">
+				    <label class="control-label col-sm-2" for="endereco">complemento:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="comp_funcionario" id="complemento" placeholder="">
+				    </div>
+				    </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Bairro:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="editar_bairro_funcionario" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="bairro_funcionario" id="endereco" placeholder="">
 				    </div>
 				  </div>
 					<div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Cidade:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="editar_cidade_funcionario" id="endereco" placeholder="">
+				      <input type="text" class="form-control tam" name="cidade_funcionario" id="endereco" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cep">* Cep:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="editar_cep_funcionario" id="cep" placeholder="">
+				      <input type="text" class="form-control tam" name="cep_funcionario" id="cep" placeholder="">
 				    </div>
 				  </div>
-				  <div class="form-inline geral" >
 				  <div class="form-group">
-				    <label class="lal" for="email">* DDD:</label>
-				    <input0  name="editar_ddd1_funcionario" type="email" class="form-control imp" id="email">
+				    <label class="control-label col-sm-2" for="ddd">* DDD:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="ddd_funcionario" id="ddd" placeholder="">
+				    </div>
 				  </div>
-				  <div class="form-group">
-				    <label class="lal2" for="pwd">* Telefone:</label>
-				    <input  name="editar_telefone1_funcionario"  type="password" class="form-control imp2" id="pwd">
-				  </div>
-				 
-				</div>
-				<div class="form-inline geral2">
-				  <div class="form-group">
-				    <label class="lal3" for="email"> DDD 2:</label>
-				    <input  name="editar_ddd2_funcionario" type="email" class="form-control imp3" id="email">
-				  </div>
-				  <div class="form-group">
-				    <label class="lal4" for="pwd"> Telefone 2:</label>
-				    <input  name="editar_telefone2_funcionario"  type="password" class="form-control imp4" id="pwd">
+				 <div class="form-group">
+				    <label class="control-label col-sm-2" for="telefone">* Telefone:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="tel_funcionario" id="telefone" placeholder="">
+				    </div>
 				  </div>
 				 
+				
+				<div class="form-group">
+				    <label class="control-label col-sm-2" for="ddd2"> DDD2:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="ddd2_funcionario" id="ddd2" placeholder="">
+				    </div>
+				  </div>
+				  <div class="form-group">
+				    <label class="control-label col-sm-2" for="telefone2"> Telefone2:</label>
+				    <div class="col-sm-10"> 
+				      <input type="text" class="form-control tam" name="tel2_funcionario" id="telefone2" placeholder="">
+				    </div>
+				  </div>
+				 </fieldset>
+				  <fieldset>
+ 				 <legend>Empresa:</legend>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="salario">* Salario:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="editar_salario_funcionario" id="salario" placeholder="">
+				      <input type="text" class="form-control tam" name="salario_funcionario" id="salario" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="periodo">* Periodo de Trabalho:</label>
 				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="editar_periodo_funcionario" id="periodo" placeholder="">
+				      <input type="text" class="form-control tam" name="periodo_funcionario" id="periodo" placeholder="">
 				    </div>
 				  </div>
 				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="cargo">* Cargo:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="editar_cargo_funcionario" id="cargo" placeholder="">
-				    </div>
+				    <label class="control-label col-sm-2" for="pwd">Situação:</label>
+
+						<select name="situacao_funcionario">
+							<option value="Ativo">Ativo</option>
+							<option value="Inativo">Inativo</option>
+						</select>
+
 				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="login">* Login:</label>
-				    <div class="col-sm-10"> 
-				      <input type="text" class="form-control tam" name="editar_login_funcionario" id="login" placeholder="">
-				    </div>
-				  </div>
-				  <div class="form-group">
-				    <label class="control-label col-sm-2" for="pwd">* Senha:</label>
-				    <div class="col-sm-10"> 
-				      <input name="editar_senha__funcionario" type="password" class="form-control tam" id="pwd" placeholder="">
-				    </div>
-				  </div>
+				  </fieldset>
+				  
 					 <div class="form-group">
 				    <label class="control-label col-sm-2" for="pwd">* E-mail:</label>
 				    <div class="col-sm-10"> 
-				      <input type="password" class="form-control tam" name="editar_E-mail_funcionario" id="pwd" placeholder="">
+				      <input type="text" class="form-control tam" name="email_funcionario" id="pwd" placeholder="">
 				    </div>
 				  </div>
-				<div class="form-group">
-				    <label class="control-label col-sm-2" for="pwd">Situação:</label>
-				    <div class="col-sm-10"> 
-				      	  <div class="dropdown">
-							  <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
-							    Selecionar
-							    <span class="caret"></span>
-							  </button>
-							  <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
-							    <li><a href="#" name="ativo">Ativo</a></li>
-							    <li><a href="#" name="inativo">Inativo</a></li>
-							 </div>
+
+				  <div class="form-group">
+				  <label class="control-label col-sm-2 al" for="pwd">Tipo: </label>
+						<select name="tipo_funcionario">
+							<option value="Funcionario">Funcionario</option>
+							<option value="Gerente">Gerente</option>
+						</select>
+		
 				  </div>
-				
-				  
+				  </fieldset>
 				  <div class="form-group"> 
 				    <div class="col-sm-offset-2 col-sm-10 mei3">
 				      <button type="submit" class="btn meu">Cadastrar</button>

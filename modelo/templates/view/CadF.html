@@ -7,6 +7,7 @@
 		<title>Principal</title>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
 		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+		<link rel="stylesheet" type="text/css" href="{% static 'css/mobile.css'%}" media="screen and (max-width: 1000px)">
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   		<script src="JavaScript/principal.js"></script>
@@ -19,14 +20,11 @@
 			<div class="col-sm-4">
 				<div class="row">
 					<div class="col-lg-12">
-						<div class="row">
-							<div class="col-sm-6">
-								<img class="img-responsive mud4 direita" src="{% static 'imagens/akivo.png'%}">
-							</div>
+						
 							<div class="col-lg-6">
 								<a class="dropdown-toggle" data-toggle="dropdown" href="#">
-							    <img class="img-responsive seta" src="{% static 'imagens/seta.png' %}"></a>
-							    <ul class="dropdown-menu">
+							    <img class="img-responsive  direita tis" style="width: 20%; height: 20%; margin-left: 30%; margin-top: 15%" src="{% static 'imagens/funcionarios.png'%}"></a>
+							    <ul class="dropdown-menu" style="margin-left: 40%;">
 							      <li><a href="{% url 'vendas' %}">Venda</a></li>
 							      <li><a href="{% url 'cadastroFunc' %}">Cadastro</a></li>
 							      <li><a href="{% url 'logout' %}">Sair</a></li> 
@@ -67,8 +65,8 @@
 				<img class="img-responsive centralizar tama" src="{% static 'imagens/icon.png'%}"><h2>Cadastro de Clientes</h2>
 				<div class="linha2"></div>
 				
-				<form action="/funcionario/cadastro_cliente/" method="POST" class="form-horizontal mei">	
-				{% csrf_token %}
+				<fieldset>
+  				<legend>Pessoal:</legend>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="cpf">* Cpf:</label>
 				    <div class="col-sm-10">
@@ -93,6 +91,9 @@
 				      <input name="email_cliente" type="email" class="form-control tam" id="email" placeholder="">
 				    </div>
 				  </div>
+				  </fieldset>
+				  <fieldset>
+  				<legend>Endereço:</legend>
 				  <div class="form-group">
 				    <label class="control-label col-sm-2" for="endereco">* Rua:</label>
 				    <div class="col-sm-10"> 
@@ -129,6 +130,9 @@
 				     		<input type="text" class="form-control tam" name="cidade_cliente" id="endereco" placeholder="">
 				    	</div>
 				  </div>
+				  </fieldset>
+				  <fieldset>
+  				<legend>Telefone:</legend>
 					<div class="form-group">
 				  		<label class="control-label col-sm-2" for="endereco">* DDD:</label>
 				    	<div class="col-sm-10"> 
@@ -153,6 +157,9 @@
 				     		<input type="number" class="form-control tam" name="tel2_cliente" id="endereco" placeholder="">
 				    	</div>
 				  </div>
+				  </fieldset>
+				  <fieldset>
+  				<legend>Login:</legend>
 					<div class="form-group">
 				  		<label class="control-label col-sm-2" for="endereco">* Login:</label>
 				    	<div class="col-sm-10"> 
@@ -170,7 +177,7 @@
 				      <button type="submit" class="btn meu">Cadastrar</button>
 				    </div>
 				  </div>
-				</form>
+				  </fieldset>	
 				</div>
 			</div>
 		</section>
@@ -193,7 +200,7 @@
 								<img class="img-responsive dimm " src="{% static 'imagens/icontel.png'%}">
 							</div>
 							<div class="col-sm-8">
-								<p style="color: white">(85) 9 9856-6485</p>
+								<p  style="color: white">(85) 9 9856-6485</p>
 							</div>
 						</div>
 						<p class="ajuste">Rua Lyberto Rodrigues de Castro Número 676 </p>
