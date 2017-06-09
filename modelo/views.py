@@ -203,7 +203,7 @@ def finalizar_compra(request,cliente,atendimento):
         estoque.quant_produtos = 0
         estoque.save()
     atendimento.save()
-    return HttpResponse('Compra finalizada com sucesso!')
+    return HttpResponseRedirect('/funcionario/')
 
 @login_required(login_url='/login/')
 def delete_estoque(request,id):
@@ -620,7 +620,7 @@ def finalizar_compra_gerente(request,cliente,atendimento):
         estoque.save()
 
     atendimento.save()
-    return HttpResponse('Compra finalizada com sucesso!')
+    return render(request, 'view/consultarH.html', data)
 
 @login_required(login_url='/login/')
 def consulta_estoque(request):
